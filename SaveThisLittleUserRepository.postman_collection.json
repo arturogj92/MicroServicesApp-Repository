@@ -1,0 +1,98 @@
+{
+	"id": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
+	"name": "SaveThisLittleUserRepository",
+	"description": "",
+	"order": [
+		"6d05e29c-a088-b6cf-f17a-27262dfe02cb",
+		"6c67269a-e1d6-90e1-9040-7b7becfae8f0",
+		"a5476373-4773-77e7-9494-7dfebaed7a47"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1534551229995,
+	"owner": "752988",
+	"public": false,
+	"requests": [
+		{
+			"id": "6c67269a-e1d6-90e1-9040-7b7becfae8f0",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8090/expense",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1534600600878,
+			"name": "CreateExpense",
+			"description": "",
+			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
+			"responses": [],
+			"rawModeData": "{\r\n\t\t\"userid\": 1,\r\n\t\t\"type\": \"type\",\r\n\t\t\"date\": \"2012-04-23T18:25:43.511Z\",\r\n\t\t\"category\": \"category\",\r\n\t\t\"subCategory\": \"trrrr\",\r\n\t\t\"note\": \"note\",\r\n\t\t\"amount\": 12.30\r\n\r\n}"
+		},
+		{
+			"id": "6d05e29c-a088-b6cf-f17a-27262dfe02cb",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8090/user",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1534597175573,
+			"name": "CreateUser",
+			"description": "",
+			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
+			"responses": [],
+			"rawModeData": "{\r\n\t\"userName\": \"userName\",\r\n    \"password\": \"password\",\r\n    \"email\": \"email@email.com\",\r\n    \"economyInfo\": {\r\n    \t\"monthlyEarning\": 1560.00,\r\n\t\t\"currentMoney\": 1250.00\r\n    }\r\n} "
+		},
+		{
+			"id": "a5476373-4773-77e7-9494-7dfebaed7a47",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:8090/expenses/52",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
+			"data": null,
+			"dataMode": "params",
+			"name": "getExpenseById",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1534619098710,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		}
+	]
+}
