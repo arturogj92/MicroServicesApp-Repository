@@ -21,4 +21,7 @@ public interface UserInfoService {
 	public Expenses createExpense(Expenses expense); 
 	
 	public List<Expenses> searchExpenseById(Long id);
+	
+	public boolean checkIfUserExists (String email);
 }
+
