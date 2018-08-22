@@ -53,8 +53,9 @@ public class Expenses {
 	@Column(name = "AMOUNT", nullable = false)
 	private double amount;
 	
-	@Column(name = "USER_ID", nullable = false)
-	private Long userid;
+	// TODO => meter el many to one.
+	@Column(name = "email", nullable = false)
+	private String email;
 	
 //	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 //	@JoinColumn(name = "user_id", nullable = false)

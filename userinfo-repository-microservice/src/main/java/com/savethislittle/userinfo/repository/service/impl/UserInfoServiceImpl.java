@@ -1,6 +1,7 @@
 package com.savethislittle.userinfo.repository.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -29,25 +30,56 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public User createUser(final User user) {
 		// TODO Auto-generated method stub
-		// return userInfoSpringDataRepository.save(user);
-
-		if (userInfoCustomRepository.checkIfUserExist(user.getEmail())==false) {
+		if (userInfoCustomRepository.checkIfUserExist(user.getEmail()) == false) {
 			return userInfoSpringDataRepository.save(user);
 		}
-		
-		
-		else throw new UserInfoRepositoryException("The user already exists");
-//		if (checkIfUserExists(user.getEmail()) == false) {
-//			return userInfoSpringDataRepository.save(user);
-//		}
-
-
+		else
+			throw new UserInfoRepositoryException("The user already exists");
 	}
 
 	// mirar para insertar lista de gastos
+	@Override
 	public Expenses createExpense(Expenses expense) {
 		userExpensesSpringDataRepository.save(expense);
 		return null;
+	}
+	
+	@Override
+	public Expenses searchExpenseById(Long id) {
+		// TODO cambiar la excepcion de userinforepository a expenserepository
+		Optional<Expenses> expenseOptional = userExpensesSpringDataRepository.findById(id);
+		if(!expenseOptional.isPresent()) {
+		throw new UserInfoRepositoryException("The expense not exist");
+	}
+		return expenseOptional.get();
+	}
+	
+//	@Override
+//	public void deleteEmployee(Long id) {
+//		log.info("deleteEmployee findById => id: {}", id);
+//		findById(id);
+//		salarySpringDataRepository.deleteById(id);
+//	}
+//	@Override
+//	public List<Employee> findAll() {
+//		return salarySpringDataRepository.findAll();
+//	}
+//	@Override
+//	public Employee findById(Long id) {
+//		log.info("simpleSearch findById => id: {}", id);
+//		Optional<Employee> employeeOptional = salarySpringDataRepository.findById(id);
+//		if(!employeeOptional.isPresent()) {
+//			throw new SalaryRepositoryServiceException("The user not exist");
+//		}
+//		return employeeOptional.get();
+//	}
+//	
+	
+	@Override
+	public void deleteExpense(Long id) {
+		// TODO Auto-generated method stub
+		searchExpenseById(id);
+		userExpensesSpringDataRepository.deleteById(id);
 	}
 
 	@Override
@@ -69,11 +101,10 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public List<Expenses> searchExpenseById(Long id) {
+	public List<Expenses> searchExpenseByUser(String email) {
 		// TODO Auto-generated method stub
-		System.out.println("AGJ -> ESTOY AQUI");
-		log.info("searchExpenseById dataIn => data: {}", id);
-		List<Expenses> expenses = expenseCustomRepository.searchExpenseById(id);
+		log.info("searchExpenseById dataIn => data: {}", email);
+		List<Expenses> expenses = expenseCustomRepository.searchExpenseByUser(email);
 		if (expenses.size() == 0) {
 			throw new UserInfoRepositoryException("The user not exist");
 		}
@@ -95,32 +126,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	}
 
-	//
-	// private void checkIsEmployeeExist(Employee employee) {
-	// List<Employee> employees =
-	// salarySearchRepository.checkIsEmployeeExist(employee.getDni(),
-	// employee.getEmail(), employee.getPhone());
-	// List<String> errors = new ArrayList<>();
-	//
-	// if(employees != null && !employees.isEmpty()) {
-	// log.error("Exsist {} employees with unique data", employees.size());
-	// if(employees.get(0).getDni().equals(employee.getDni())) {
-	// log.error("The dni already exist in the system");
-	// errors.add("The dni already exist in the system");
-	// }
-	// if(employees.get(0).getEmail().equals(employee.getEmail())) {
-	// log.error("The email already exist in the system");
-	// errors.add("The email already exist in the system");
-	// }
-	// if(employees.get(0).getPhone().equals(employee.getPhone())) {
-	// log.error("The phone already exist in the system");
-	// errors.add("The phone already exist in the system");
-	// }
-	// }
-	//
-	// if(!errors.isEmpty()) {
-	// throw new SalaryRepositoryServiceException(errors);
-	// }
-	// }
+
+
+
+
 
 }

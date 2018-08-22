@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,7 +38,7 @@ public class UserInfoController {
 		return ResponseEntity.created(location).build();
 	}
 
-	@PostMapping("/expense")
+	@PostMapping("/expenses")
 	public void createExpense(@Valid @RequestBody Expenses expense) {
 		// log.info("createEmployee dataIn => {}", employee);
 		// User userInserted = userInfoService.createUser(user);
@@ -47,12 +48,21 @@ public class UserInfoController {
 		// /return ResponseEntity.created(location).build();
 	}
 
-	@GetMapping("/expenses/{id}")
-	public ResponseEntity<List<Expenses>> findExpensesById(@PathVariable Long id) {
+	@GetMapping("/expenses/{email}")
+	public ResponseEntity<List<Expenses>> findExpensesById(@PathVariable String email) {
 
-		List<Expenses> expenses = userInfoService.searchExpenseById(id);
+		List<Expenses> expenses = userInfoService.searchExpenseByUser(email);
 		// log.info("findById dataOut => employees: {}", employees);
 		return new ResponseEntity<>(expenses, HttpStatus.OK);
+	}
+	
+
+	
+	@DeleteMapping("/expenses/{id}")
+	public ResponseEntity<Void> deleteExpense(@PathVariable Long id) {
+		//log.info("deleteEmployee dataIn => id: {}", id);
+		userInfoService.deleteExpense(id);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 }

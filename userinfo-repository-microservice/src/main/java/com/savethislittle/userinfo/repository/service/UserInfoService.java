@@ -16,8 +16,12 @@ public interface UserInfoService {
 	public List<User> findAll();
 
 	public Expenses createExpense(Expenses expense);
+	
+	public void deleteExpense(Long id);
 
-	public List<Expenses> searchExpenseById(Long id);
+	public List<Expenses> searchExpenseByUser(String email);
+	
+	public Expenses searchExpenseById(Long id);
 
 	public boolean checkIfUserExists(String email);
 }

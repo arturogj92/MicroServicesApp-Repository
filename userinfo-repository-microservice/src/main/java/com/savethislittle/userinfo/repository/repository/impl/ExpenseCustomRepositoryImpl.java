@@ -22,13 +22,15 @@ public class ExpenseCustomRepositoryImpl implements ExpenseCustomRepository{
 	@Autowired
 	EntityManager em;
 
-	public List<Expenses> searchExpenseById(Long id) {
+	
+	//TODO => Creo que puedo hacerla con jpa normal
+	public List<Expenses> searchExpenseByUser(String email) {
 		System.out.println("AGJ -> ESTOY AQUI");
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 		CriteriaQuery<Expenses> criteriaQuery = criteriaBuilder.createQuery(Expenses.class);
 		Root<Expenses> root = criteriaQuery.from(Expenses.class);
 		criteriaQuery.select(root);
-		criteriaQuery.where(criteriaBuilder.equal(root.get("userid"), id));
+		criteriaQuery.where(criteriaBuilder.equal(root.get("email"), email));
 		List<Expenses> expensesList = this.em.createQuery(criteriaQuery).getResultList();
 		
 	

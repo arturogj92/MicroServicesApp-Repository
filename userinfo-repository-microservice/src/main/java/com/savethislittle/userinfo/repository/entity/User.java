@@ -46,16 +46,4 @@ public class User {
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinColumn(name = "ECONOMYINFO_ID", nullable = false)
 	private EconomyInfo economyInfo;
-
-	// @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	// @JoinColumn(name = "user_id")
-	// private List<Expenses> expenses = new ArrayList<>();
-
-	// @OneToMany(mappedBy="Expenses")
-	// @JoinColumn(name = "EXPENSES_ID", nullable = false)
-	// private Expenses expenses;
-
-	// @Formula( value = "CONCAT(firstName, ' ', lastName)")
-	// private String fullName;
-
 }
