@@ -12,20 +12,8 @@ public class UserInfoRepositoryException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	private final List<String> messages;
-
 	public UserInfoRepositoryException(String message) {
-		messages = new ArrayList<>();
-		messages.add(message);
-	}
-
-	public UserInfoRepositoryException(List<String> messages) {
-		this.messages = new ArrayList<>(messages);
-		this.messages.addAll(messages);
-	}
-
-	public List<String> getMessages() {
-		return messages;
+		super(message);
 	}
 
 }

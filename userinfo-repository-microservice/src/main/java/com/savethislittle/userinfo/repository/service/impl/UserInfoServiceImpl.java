@@ -30,11 +30,18 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public User createUser(final User user) {
 		// TODO Auto-generated method stub
 		// return userInfoSpringDataRepository.save(user);
-		if (checkIfUserExists(user.getEmail()) == false) {
-			userInfoSpringDataRepository.save(user);
-		}
 
-		return null;
+		if (userInfoCustomRepository.checkIfUserExist(user.getEmail())==false) {
+			return userInfoSpringDataRepository.save(user);
+		}
+		
+		
+		else throw new UserInfoRepositoryException("The user already exists");
+//		if (checkIfUserExists(user.getEmail()) == false) {
+//			return userInfoSpringDataRepository.save(user);
+//		}
+
+
 	}
 
 	// mirar para insertar lista de gastos
@@ -78,16 +85,14 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public boolean checkIfUserExists(String email) {
 		// TODO Auto-generated method stub
 
-		User usercheck = userInfoCustomRepository.checkIfUserExist(email);
-		String message;
+		Boolean userCheckExists = userInfoCustomRepository.checkIfUserExist(email);
 
-		if (usercheck != null) {
-			message = "The user already exists";
-			throw new UserInfoRepositoryException(message);
-
+		if (userCheckExists == true) {
+			throw new UserInfoRepositoryException("The user already exists");
 		}
 
-		return false;
+		return userCheckExists;
+
 	}
 
 	//

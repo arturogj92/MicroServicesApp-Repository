@@ -6,7 +6,7 @@ import com.savethislittle.userinfo.repository.entity.User;
 
 public interface UserInfoCustomRepository {
 
-	public User checkIfUserExist(String email);
+	public boolean checkIfUserExist(String email);
 	
 
 }
