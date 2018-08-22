@@ -34,10 +34,10 @@ public class ExpenseCustomRepositoryImpl implements ExpenseCustomRepository{
 		List<Expenses> expensesList = this.em.createQuery(criteriaQuery).getResultList();
 		
 	
-		if (!expensesList.isEmpty())
+//		if (!expensesList.isEmpty())
 			return expensesList;
-		else
-			return null;
+//		else
+//			return null;
 
 	}
 

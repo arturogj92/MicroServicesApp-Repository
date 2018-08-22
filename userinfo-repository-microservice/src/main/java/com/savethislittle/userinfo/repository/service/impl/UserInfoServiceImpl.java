@@ -54,27 +54,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return expenseOptional.get();
 	}
 	
-//	@Override
-//	public void deleteEmployee(Long id) {
-//		log.info("deleteEmployee findById => id: {}", id);
-//		findById(id);
-//		salarySpringDataRepository.deleteById(id);
-//	}
-//	@Override
-//	public List<Employee> findAll() {
-//		return salarySpringDataRepository.findAll();
-//	}
-//	@Override
-//	public Employee findById(Long id) {
-//		log.info("simpleSearch findById => id: {}", id);
-//		Optional<Employee> employeeOptional = salarySpringDataRepository.findById(id);
-//		if(!employeeOptional.isPresent()) {
-//			throw new SalaryRepositoryServiceException("The user not exist");
-//		}
-//		return employeeOptional.get();
-//	}
-//	
-	
 	@Override
 	public void deleteExpense(Long id) {
 		// TODO Auto-generated method stub
@@ -105,7 +84,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 		// TODO Auto-generated method stub
 		log.info("searchExpenseById dataIn => data: {}", email);
 		List<Expenses> expenses = expenseCustomRepository.searchExpenseByUser(email);
-		if (expenses.size() == 0) {
+		if (expenses.isEmpty()) {
+			System.out.println("no existe lcooooo");
 			throw new UserInfoRepositoryException("The user not exist");
 		}
 		// log.info("simpleSearch dataOut => employees.size(): {}", expenses.size());
