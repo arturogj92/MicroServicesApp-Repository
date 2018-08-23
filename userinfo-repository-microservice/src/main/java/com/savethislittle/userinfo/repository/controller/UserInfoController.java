@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -38,6 +39,14 @@ public class UserInfoController {
 		return ResponseEntity.created(location).build();
 	}
 
+	@GetMapping("/user/{email}")
+	public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+
+		User user = userInfoService.findUserByEmail(email);
+		return new ResponseEntity<>(user, HttpStatus.OK);
+
+	}
+
 	@PostMapping("/expenses")
 	public void createExpense(@Valid @RequestBody Expenses expense) {
 		// log.info("createEmployee dataIn => {}", employee);
@@ -55,14 +64,31 @@ public class UserInfoController {
 		// log.info("findById dataOut => employees: {}", employees);
 		return new ResponseEntity<>(expenses, HttpStatus.OK);
 	}
-	
 
+	@GetMapping("/users")
+	public ResponseEntity<List<User>> getAllUsers() {
+
+		List<User> usersList = userInfoService.findAll();
+		return new ResponseEntity<>(usersList, HttpStatus.OK);
+
+	}
+
+	@PutMapping("/user")
+	public ResponseEntity<Void> updateUser(@Valid @RequestBody User user){
+		userInfoService.updateUser(user);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 	
 	@DeleteMapping("/expenses/{id}")
 	public ResponseEntity<Void> deleteExpense(@PathVariable Long id) {
-		//log.info("deleteEmployee dataIn => id: {}", id);
+		// log.info("deleteEmployee dataIn => id: {}", id);
 		userInfoService.deleteExpense(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
+	@DeleteMapping("/user/{email}")
+	public ResponseEntity<Void>deleteUserByEmail(@PathVariable String email){
+		userInfoService.deleteUserByEmail(email);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
 }

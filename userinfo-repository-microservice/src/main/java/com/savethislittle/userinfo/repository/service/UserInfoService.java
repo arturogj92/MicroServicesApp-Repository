@@ -11,7 +11,11 @@ public interface UserInfoService {
 
 	public void updateUser(User user);
 
-	public void deleteUser(User user);
+	public void deleteUserByEmail(String email);
+	
+	public User findUserByEmail(String email);
+	
+	public boolean checkIfUserExists(String email);
 
 	public List<User> findAll();
 
@@ -22,6 +26,10 @@ public interface UserInfoService {
 	public List<Expenses> searchExpenseByUser(String email);
 	
 	public Expenses searchExpenseById(Long id);
+	
+	public void updateExpense(Expenses expense);
 
-	public boolean checkIfUserExists(String email);
+
+	
+
 }

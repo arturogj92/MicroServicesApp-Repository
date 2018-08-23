@@ -32,8 +32,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 		// TODO Auto-generated method stub
 		if (userInfoCustomRepository.checkIfUserExist(user.getEmail()) == false) {
 			return userInfoSpringDataRepository.save(user);
-		}
-		else
+		} else
 			throw new UserInfoRepositoryException("The user already exists");
 	}
 
@@ -43,17 +42,17 @@ public class UserInfoServiceImpl implements UserInfoService {
 		userExpensesSpringDataRepository.save(expense);
 		return null;
 	}
-	
+
 	@Override
 	public Expenses searchExpenseById(Long id) {
 		// TODO cambiar la excepcion de userinforepository a expenserepository
 		Optional<Expenses> expenseOptional = userExpensesSpringDataRepository.findById(id);
-		if(!expenseOptional.isPresent()) {
-		throw new UserInfoRepositoryException("The expense not exist");
-	}
+		if (!expenseOptional.isPresent()) {
+			throw new UserInfoRepositoryException("The expense doesn't exists");
+		}
 		return expenseOptional.get();
 	}
-	
+
 	@Override
 	public void deleteExpense(Long id) {
 		// TODO Auto-generated method stub
@@ -65,18 +64,51 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public void updateUser(User user) {
 		// TODO Auto-generated method stub
 
+		Optional<User> findById = userInfoSpringDataRepository.findById(user.getId());
+
+		if (findById.isPresent()) {
+
+			User userAux = userInfoCustomRepository.findUserByEmail(user.getEmail());
+
+			if (userAux != null) {
+				throw new UserInfoRepositoryException("User email already exist");
+			}
+			userInfoSpringDataRepository.save(user);
+		}
+
+		else
+			throw new UserInfoRepositoryException("The id is not asociated to any user");
 	}
 
 	@Override
-	public void deleteUser(User user) {
+	public void updateExpense(Expenses expense) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void deleteUserByEmail(String email) {
+		// TODO Auto-generated method stub
+		User user = userInfoCustomRepository.findUserByEmail(email);
+		userInfoSpringDataRepository.delete(user);
 	}
 
 	@Override
 	public List<User> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		List<User> userList = userInfoSpringDataRepository.findAll();
+		return userList;
+	}
+
+	@Override
+	public User findUserByEmail(String email) {
+
+		User user = userInfoCustomRepository.findUserByEmail(email);
+		if (!(user.equals(null))) {
+			return user;
+		}
+
+		else
+			throw new UserInfoRepositoryException("User doesn't exist");
 	}
 
 	@Override
@@ -86,7 +118,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 		List<Expenses> expenses = expenseCustomRepository.searchExpenseByUser(email);
 		if (expenses.isEmpty()) {
 			System.out.println("no existe lcooooo");
-			throw new UserInfoRepositoryException("The user not exist");
+			throw new UserInfoRepositoryException("User doesn't exist");
 		}
 		// log.info("simpleSearch dataOut => employees.size(): {}", expenses.size());
 		return expenses;
@@ -105,10 +137,5 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return userCheckExists;
 
 	}
-
-
-
-
-
 
 }

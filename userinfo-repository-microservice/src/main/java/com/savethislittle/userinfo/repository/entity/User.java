@@ -32,7 +32,7 @@ public class User {
 	private Long id;
 
 	// @Size(min=1, max=50)
-	@Column(name = "USERNAME", nullable = false)
+	@Column(name = "USERNAME", nullable = false, unique=true)
 	private String userName;
 
 	// @Size(min=1, max=50)
@@ -40,7 +40,7 @@ public class User {
 	private String password;
 
 	// @Size(min=1, max=50)
-	@Column(name = "EMAIL", nullable = false)
+	@Column(name = "EMAIL", nullable = false, unique=true)
 	private String email;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

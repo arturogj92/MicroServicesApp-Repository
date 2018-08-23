@@ -8,5 +8,7 @@ public interface UserInfoCustomRepository {
 
 	public boolean checkIfUserExist(String email);
 	
+	public User findUserByEmail(String email);
+	
 
 }

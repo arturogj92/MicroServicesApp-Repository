@@ -36,5 +36,21 @@ public class UserInfoCustomRepositoryImpl implements UserInfoCustomRepository {
 			return false;
 
 	}
+	
+	public User findUserByEmail(String email) {
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		CriteriaQuery<User> criteriaQuery = criteriaBuilder.createQuery(User.class);
+		Root<User> root = criteriaQuery.from(User.class);
+		criteriaQuery.select(root);
+		criteriaQuery.where(criteriaBuilder.equal(root.get("email"), email));
+
+		List<User> userCheck = this.em.createQuery(criteriaQuery).getResultList();
+		
+		if(!userCheck.isEmpty()) {
+			return userCheck.get(0);
+		}
+		
+		return null;
+	}
 
 }
