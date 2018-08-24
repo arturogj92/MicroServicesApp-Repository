@@ -32,10 +32,11 @@ public class UserInfoController {
 
 	@PostMapping("/user")
 	public ResponseEntity<Void> createUser(@Valid @RequestBody User user) {
-		// log.info("createEmployee dataIn => {}", employee);
+		log.info("createUser dataIn => {}", user.getUserName());
 		User userInserted = userInfoService.createUser(user);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(userInserted.getId()).toUri();
+		log.info("createUser dataOut => User created: {}", user.getUserName() );
 		return ResponseEntity.created(location).build();
 	}
 
@@ -55,6 +56,12 @@ public class UserInfoController {
 		// URI location =
 		// ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userInserted.getId()).toUri();
 		// /return ResponseEntity.created(location).build();
+	}
+	
+	@PutMapping("/expenses")
+	public ResponseEntity<Void> updateExpense(@Valid @RequestBody Expenses expense){
+		userInfoService.updateExpense(expense);
+		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@GetMapping("/expenses/{email}")

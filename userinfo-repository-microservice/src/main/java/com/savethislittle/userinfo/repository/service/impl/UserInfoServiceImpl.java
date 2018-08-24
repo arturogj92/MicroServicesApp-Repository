@@ -79,18 +79,24 @@ public class UserInfoServiceImpl implements UserInfoService {
 		else
 			throw new UserInfoRepositoryException("The id is not asociated to any user");
 	}
+	
+	
 
 	@Override
 	public void updateExpense(Expenses expense) {
-		// TODO Auto-generated method stub
-
+		searchExpenseById(expense.getId());
+		userExpensesSpringDataRepository.save(expense);
 	}
 
 	@Override
 	public void deleteUserByEmail(String email) {
 		// TODO Auto-generated method stub
 		User user = userInfoCustomRepository.findUserByEmail(email);
+		if(user!=null) {
 		userInfoSpringDataRepository.delete(user);
+		}
+		
+		else throw new UserInfoRepositoryException("Cannot remove an unexisting user");
 	}
 
 	@Override
@@ -125,7 +131,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public boolean checkIfUserExists(String email) {
+	public boolean checkIfUserDuplicated(String email) {
 		// TODO Auto-generated method stub
 
 		Boolean userCheckExists = userInfoCustomRepository.checkIfUserExist(email);
@@ -137,5 +143,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return userCheckExists;
 
 	}
+
 
 }

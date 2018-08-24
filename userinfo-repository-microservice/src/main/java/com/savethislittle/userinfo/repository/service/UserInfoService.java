@@ -15,7 +15,7 @@ public interface UserInfoService {
 	
 	public User findUserByEmail(String email);
 	
-	public boolean checkIfUserExists(String email);
+	public boolean checkIfUserDuplicated(String email);
 
 	public List<User> findAll();
 

@@ -47,6 +47,8 @@ public class UserInfoCustomRepositoryImpl implements UserInfoCustomRepository {
 		List<User> userCheck = this.em.createQuery(criteriaQuery).getResultList();
 		
 		if(!userCheck.isEmpty()) {
+			
+			System.out.println("Hay userrrrrr");
 			return userCheck.get(0);
 		}
 		
