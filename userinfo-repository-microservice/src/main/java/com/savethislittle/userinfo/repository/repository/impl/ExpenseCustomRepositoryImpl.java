@@ -17,52 +17,21 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Repository
-public class ExpenseCustomRepositoryImpl implements ExpenseCustomRepository{
+public class ExpenseCustomRepositoryImpl implements ExpenseCustomRepository {
 
 	@Autowired
 	EntityManager em;
 
-	
-	//TODO => Creo que puedo hacerla con jpa normal
-	public List<Expenses> searchExpenseByUser(String email) {
-		System.out.println("AGJ -> ESTOY AQUI");
+	// TODO => Creo que puedo hacerla con jpa normal
+	public List<Expenses> searchExpenseByEmail(String email) {
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 		CriteriaQuery<Expenses> criteriaQuery = criteriaBuilder.createQuery(Expenses.class);
 		Root<Expenses> root = criteriaQuery.from(Expenses.class);
 		criteriaQuery.select(root);
 		criteriaQuery.where(criteriaBuilder.equal(root.get("email"), email));
 		List<Expenses> expensesList = this.em.createQuery(criteriaQuery).getResultList();
-		
-	
-//		if (!expensesList.isEmpty())
-			return expensesList;
-//		else
-//			return null;
+		return expensesList;
 
 	}
-
-	// @Override
-	// public List<Employee> simpleSearch(String data) {
-	// log.info("simpleSearch dataIn => " + data);
-	// CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-	// CriteriaQuery<Employee> criteriaQuery =
-	// criteriaBuilder.createQuery(Employee.class);
-	// Root<Employee> root = criteriaQuery.from(Employee.class);
-	// root.fetch(Employee_.contract);
-	//
-	//
-	// Predicate orPredicate = criteriaBuilder.or(
-	// criteriaBuilder.like(criteriaBuilder.upper(root.get(Employee_.fullName)),
-	// "%"+data.toUpperCase()+"%"),
-	// criteriaBuilder.like(criteriaBuilder.upper(root.get(Employee_.dni)),
-	// "%"+data.toUpperCase()+"%")
-	// );
-	// criteriaQuery.where(orPredicate);
-	//
-	// List<Employee> result = em.createQuery(criteriaQuery).getResultList();
-	//
-	// log.info("simpleSearch dataOut => result.size(): {}" + result.size());
-	// return result;
-	// }
 
 }

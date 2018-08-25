@@ -13,7 +13,7 @@ public interface UserInfoService {
 
 	public void deleteUserByEmail(String email);
 	
-	public User findUserByEmail(String email);
+	public User getUserByEmail(String email);
 	
 	public boolean checkIfUserExists(String email);
 
@@ -23,7 +23,7 @@ public interface UserInfoService {
 	
 	public void deleteExpense(Long id);
 
-	public List<Expenses> searchExpenseByUser(String email);
+	public List<Expenses> searchExpenseByEmail(String email);
 	
 	public Expenses searchExpenseById(Long id);
 	
