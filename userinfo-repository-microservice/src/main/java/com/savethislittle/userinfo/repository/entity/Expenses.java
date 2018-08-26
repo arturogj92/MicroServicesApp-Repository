@@ -57,15 +57,5 @@ public class Expenses {
 	@Column(name = "email", nullable = false)
 	private String email;
 	
-//	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-//	@JoinColumn(name = "user_id", nullable = false)
-//	private User user;
-	
-//	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "post_id", nullable = false)
-//	private User user;
-
-	// @Formula( value = "CONCAT(firstName, ' ', lastName)")
-	// private String fullName;
 
 }

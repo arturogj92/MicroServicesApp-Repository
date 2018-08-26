@@ -43,7 +43,7 @@ public class User {
 	@Column(name = "EMAIL", nullable = false, unique=true)
 	private String email;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval=true)
 	@JoinColumn(name = "ECONOMYINFO_ID", nullable = false)
 	private EconomyInfo economyInfo;
 }
