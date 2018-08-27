@@ -91,13 +91,10 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public void deleteUserByEmail(String email) {
-<<<<<<< HEAD
 		// TODO Auto-generated method stub
 		User user = userInfoCustomRepository.findUserByEmail(email);
 		if(user!=null) {
-=======
 		User user = getUserByEmail(email);
->>>>>>> 760105eb7c9995d1d7d242bd99efdd70a0edb1b4
 		userInfoSpringDataRepository.delete(user);
 		}
 		

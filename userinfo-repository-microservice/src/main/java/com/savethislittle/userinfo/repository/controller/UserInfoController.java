@@ -33,19 +33,16 @@ public class UserInfoController {
 
 	@PostMapping("/user")
 	public ResponseEntity<Void> createUser(@Valid @RequestBody User user) {
-<<<<<<< HEAD
 		log.info("createUser dataIn => {}", user.getUserName());
 		User userInserted = userInfoService.createUser(user);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(userInserted.getId()).toUri();
 		log.info("createUser dataOut => User created: {}", user.getUserName() );
-=======
 		log.info("ACTION: createUser INPUT => {}", user.getEmail());
 		User userInserted = userInfoService.createUser(user);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(userInserted.getId()).toUri();
 		log.info("ACTION: createUser OUTPUT => {}", "User created");
->>>>>>> 760105eb7c9995d1d7d242bd99efdd70a0edb1b4
 		return ResponseEntity.created(location).build();
 	}
 

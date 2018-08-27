@@ -45,7 +45,6 @@ public class UserInfoCustomRepositoryImpl implements UserInfoCustomRepository {
 		criteriaQuery.where(criteriaBuilder.equal(root.get("email"), email));
 
 		List<User> userCheck = this.em.createQuery(criteriaQuery).getResultList();
-<<<<<<< HEAD
 		
 		if(!userCheck.isEmpty()) {
 			
@@ -54,10 +53,8 @@ public class UserInfoCustomRepositoryImpl implements UserInfoCustomRepository {
 		}
 		
 		return null;
-=======
 
 		return userCheck;
->>>>>>> 760105eb7c9995d1d7d242bd99efdd70a0edb1b4
 	}
 
 }
