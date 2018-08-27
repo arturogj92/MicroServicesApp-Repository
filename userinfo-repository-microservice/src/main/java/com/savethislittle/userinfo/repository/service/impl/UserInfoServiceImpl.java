@@ -29,14 +29,13 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public User createUser(final User user) {
-		// TODO Auto-generated method stub
 		if (userInfoCustomRepository.checkIfUserExist(user.getEmail()) == false) {
 			return userInfoSpringDataRepository.save(user);
 		} else
-			throw new UserInfoRepositoryException("The user already exists");
+			log.error("ACTION: createUser ERROR => {}", "User ** " + user.getEmail() + " ** not created");
+		throw new UserInfoRepositoryException("The user already exists");
 	}
 
-	// mirar para insertar lista de gastos
 	@Override
 	public Expenses createExpense(Expenses expense) {
 		userExpensesSpringDataRepository.save(expense);
@@ -45,9 +44,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public Expenses searchExpenseById(Long id) {
-		// TODO cambiar la excepcion de userinforepository a expenserepository
 		Optional<Expenses> expenseOptional = userExpensesSpringDataRepository.findById(id);
 		if (!expenseOptional.isPresent()) {
+			log.error("ACTION: searchExpenseById ERROR => {}", "Expense ** " + id + " ** not found");
 			throw new UserInfoRepositoryException("The expense doesn't exists");
 		}
 		return expenseOptional.get();
@@ -55,29 +54,31 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public void deleteExpense(Long id) {
-		// TODO Auto-generated method stub
 		searchExpenseById(id);
 		userExpensesSpringDataRepository.deleteById(id);
 	}
 
 	@Override
 	public void updateUser(User user) {
-		// TODO Auto-generated method stub
-
 		Optional<User> findById = userInfoSpringDataRepository.findById(user.getId());
-
 		if (findById.isPresent()) {
 
-			User userAux = userInfoCustomRepository.findUserByEmail(user.getEmail());
+			List<User> userAux = userInfoCustomRepository.findUserByEmail(user.getEmail());
 
-			if (userAux != null) {
-				throw new UserInfoRepositoryException("User email already exist");
+			// Double check to see if the user email belongs to the user to be updated.
+			if (!userAux.isEmpty()) {
+				if (userAux.get(0).getEmail().toString() != findById.get().getEmail().toString())
+					log.error("ACTION: updateUser ERROR => {}", "User email " + user.getEmail() + " is in use");
+				throw new UserInfoRepositoryException("User email is in use");
 			}
 			userInfoSpringDataRepository.save(user);
 		}
 
-		else
+		else {
+			log.error("ACTION: updateUser ERROR => {}", "User ID " + user.getId() + " is not asociated to any user");
 			throw new UserInfoRepositoryException("The id is not asociated to any user");
+		}
+
 	}
 	
 	
@@ -90,9 +91,13 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public void deleteUserByEmail(String email) {
+<<<<<<< HEAD
 		// TODO Auto-generated method stub
 		User user = userInfoCustomRepository.findUserByEmail(email);
 		if(user!=null) {
+=======
+		User user = getUserByEmail(email);
+>>>>>>> 760105eb7c9995d1d7d242bd99efdd70a0edb1b4
 		userInfoSpringDataRepository.delete(user);
 		}
 		
@@ -106,27 +111,29 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public User findUserByEmail(String email) {
+	public User getUserByEmail(String email) {
+		List<User> userList = userInfoCustomRepository.findUserByEmail(email);
 
-		User user = userInfoCustomRepository.findUserByEmail(email);
-		if (!(user.equals(null))) {
-			return user;
+		if (!(userList.isEmpty())) {
+			return userList.get(0);
 		}
 
-		else
-			throw new UserInfoRepositoryException("User doesn't exist");
+		else {
+			log.error("ACTION: getUserByEmail ERROR =>  {}", "User doesn't exists");
+			throw new UserInfoRepositoryException("User doesn't exists");
+		}
 	}
 
 	@Override
-	public List<Expenses> searchExpenseByUser(String email) {
-		// TODO Auto-generated method stub
-		log.info("searchExpenseById dataIn => data: {}", email);
-		List<Expenses> expenses = expenseCustomRepository.searchExpenseByUser(email);
+	public List<Expenses> searchExpenseByEmail(String email) {
+		List<Expenses> expenses = expenseCustomRepository.searchExpenseByEmail(email);
 		if (expenses.isEmpty()) {
-			System.out.println("no existe lcooooo");
-			throw new UserInfoRepositoryException("User doesn't exist");
+			log.error("ACTION: findExpensesByEmail ERROR => expensessize(): {}",
+					"The user doesn't have expenses asociated");
+			throw new UserInfoRepositoryException("User doesn't have expenses asociated");
+
 		}
-		// log.info("simpleSearch dataOut => employees.size(): {}", expenses.size());
+
 		return expenses;
 	}
 

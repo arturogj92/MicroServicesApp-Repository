@@ -28,34 +28,41 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class UserInfoController {
 
+	
 	private UserInfoService userInfoService;
 
 	@PostMapping("/user")
 	public ResponseEntity<Void> createUser(@Valid @RequestBody User user) {
+<<<<<<< HEAD
 		log.info("createUser dataIn => {}", user.getUserName());
 		User userInserted = userInfoService.createUser(user);
 		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
 				.buildAndExpand(userInserted.getId()).toUri();
 		log.info("createUser dataOut => User created: {}", user.getUserName() );
+=======
+		log.info("ACTION: createUser INPUT => {}", user.getEmail());
+		User userInserted = userInfoService.createUser(user);
+		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+				.buildAndExpand(userInserted.getId()).toUri();
+		log.info("ACTION: createUser OUTPUT => {}", "User created");
+>>>>>>> 760105eb7c9995d1d7d242bd99efdd70a0edb1b4
 		return ResponseEntity.created(location).build();
 	}
 
 	@GetMapping("/user/{email}")
 	public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
-
-		User user = userInfoService.findUserByEmail(email);
+		log.info("ACTION: getUserByEmail INPUT: => {}", email);
+		User user = userInfoService.getUserByEmail(email);
+		log.info("ACTION: getUserByEmail OUTPUT => user: {}"," USERNAME: " + user.getUserName()+ " EMAIL: " + user.getEmail());
 		return new ResponseEntity<>(user, HttpStatus.OK);
 
 	}
 
 	@PostMapping("/expenses")
 	public void createExpense(@Valid @RequestBody Expenses expense) {
-		// log.info("createEmployee dataIn => {}", employee);
-		// User userInserted = userInfoService.createUser(user);
+		log.info("ACTION: createExpense INPUT: => {}", " NOTE: " + expense.getNote() + " USER: " + expense.getEmail());
 		userInfoService.createExpense(expense);
-		// URI location =
-		// ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(userInserted.getId()).toUri();
-		// /return ResponseEntity.created(location).build();
+		log.info("ACTION: createExpense OUTPUT: => {}", "Expense created");
 	}
 	
 	@PutMapping("/expenses")
@@ -65,37 +72,51 @@ public class UserInfoController {
 	}
 
 	@GetMapping("/expenses/{email}")
-	public ResponseEntity<List<Expenses>> findExpensesById(@PathVariable String email) {
-
-		List<Expenses> expenses = userInfoService.searchExpenseByUser(email);
-		// log.info("findById dataOut => employees: {}", employees);
+	public ResponseEntity<List<Expenses>> findExpensesByEmail(@PathVariable String email) {
+		log.info("ACTION: findExpensesByEmail INPUT: => {}", email);
+		List<Expenses> expenses = userInfoService.searchExpenseByEmail(email);
+		log.info("ACTION: findExpensesByEmail OUTPUT => expenses size: {}", expenses.size());
 		return new ResponseEntity<>(expenses, HttpStatus.OK);
 	}
 
 	@GetMapping("/users")
 	public ResponseEntity<List<User>> getAllUsers() {
-
+		log.info("ACTION: getAllUsers INPUT: => {}");
 		List<User> usersList = userInfoService.findAll();
+		log.info("ACTION: getAllUsers OUTPUT => users size: {}", usersList.size());
 		return new ResponseEntity<>(usersList, HttpStatus.OK);
 
 	}
 
 	@PutMapping("/user")
-	public ResponseEntity<Void> updateUser(@Valid @RequestBody User user){
+	public ResponseEntity<Void> updateUser(@Valid @RequestBody User user) {
+		log.info("ACTION: updateUser INPUT: => {}","ID to be UPDATED "+ user.getEmail());
 		userInfoService.updateUser(user);
+		log.info("ACTION: updateUser OUTPUT => user updated: {}"+ user.getEmail());
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
+
+	@PutMapping("/expenses")
+	public ResponseEntity<Void> updateExpenses(@Valid @RequestBody Expenses expense) {
+		log.info("ACTION: updateExpenses INPUT: => {}"," NOTE: " + expense.getNote() + "| USER: " + expense.getEmail());
+		userInfoService.updateExpense(expense);
+		log.info("ACTION: updateExpenses OUTPUT: => {}", "expense updated");
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
 	@DeleteMapping("/expenses/{id}")
 	public ResponseEntity<Void> deleteExpense(@PathVariable Long id) {
-		// log.info("deleteEmployee dataIn => id: {}", id);
+		log.info("ACTION: deleteExpense INPUT: => {}","EXPENSE ID: "+ id);
 		userInfoService.deleteExpense(id);
+		log.info("ACTION: deleteExpense OUTPUT: => {}","Expense deleted");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 
 	@DeleteMapping("/user/{email}")
-	public ResponseEntity<Void>deleteUserByEmail(@PathVariable String email){
+	public ResponseEntity<Void> deleteUserByEmail(@PathVariable String email) {
+		log.info("ACTION: deleteUserByEmail INPUT: => {}","USER EMAIL: "+ email);
 		userInfoService.deleteUserByEmail(email);
+		log.info("ACTION: deleteUserByEmail OUTPUT: => {}","User deleted");
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
