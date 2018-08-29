@@ -171,21 +171,28 @@ public class UserInfoServiceImpl implements UserInfoService {
 	
 	}
 
+//	@Override
+//	public List<TopExpensesView> getTopExpensesViewByEmail(String email) {
+//		List<TopExpensesView> expenses = topExpensesViewCustomRepository.searchTopExpenseViewByEmail(email);
+//		if (expenses.isEmpty()) {
+//			log.error("ACTION: findExpensesByEmail ERROR => expensessize(): {}",
+//					"The user doesn't have expenses asociated");
+//			throw new UserInfoRepositoryException("User doesn't have expenses asociated");
+//
+//		}
+//
+//		return expenses;
+//	}
+
 	@Override
 	public List<TopExpensesView> getTopExpensesViewByEmail(String email) {
-		List<TopExpensesView> expenses = topExpensesViewCustomRepository.searchTopExpenseViewByEmail(email);
+		List<TopExpensesView> expenses = topExpensesViewSpringDataRepository.findByEmail(email);
 		if (expenses.isEmpty()) {
-			log.error("ACTION: findExpensesByEmail ERROR => expensessize(): {}",
-					"The user doesn't have expenses asociated");
+			log.error("ACTION: getTopExpensesViewByEmail ERROR => expensessize(): {}",
+			"The user doesn't have expenses asociated");
 			throw new UserInfoRepositoryException("User doesn't have expenses asociated");
-
 		}
-
-		return expenses;
-	}
-
-	@Override
-	public List<TopExpensesView> findByEmail(String email) {
+		
 		return topExpensesViewSpringDataRepository.findByEmail(email);
 	}
 
