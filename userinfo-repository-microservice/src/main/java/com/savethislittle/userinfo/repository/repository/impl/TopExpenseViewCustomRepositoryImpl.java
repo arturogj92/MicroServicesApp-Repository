@@ -8,11 +8,12 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import com.savethislittle.userinfo.repository.entity.Expenses;
 import com.savethislittle.userinfo.repository.entity.TopExpensesView;
 import com.savethislittle.userinfo.repository.repository.TopExpensesViewCustomRepository;
 
+@Repository
 public class TopExpenseViewCustomRepositoryImpl implements TopExpensesViewCustomRepository {
 
 	

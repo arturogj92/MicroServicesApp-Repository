@@ -36,6 +36,8 @@ public interface UserInfoService {
 	public Optional<User> getUserById(Long id);
 	
 	public List<TopExpensesView> getTopExpensesViewByEmail(String email);
+	
+	public List<TopExpensesView> findByEmail(String email);
 
 
 	

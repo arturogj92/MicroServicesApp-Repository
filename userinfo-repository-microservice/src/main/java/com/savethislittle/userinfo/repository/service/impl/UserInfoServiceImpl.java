@@ -11,6 +11,7 @@ import com.savethislittle.userinfo.repository.entity.User;
 import com.savethislittle.userinfo.repository.exception.UserInfoRepositoryException;
 import com.savethislittle.userinfo.repository.repository.ExpenseCustomRepository;
 import com.savethislittle.userinfo.repository.repository.TopExpensesViewCustomRepository;
+import com.savethislittle.userinfo.repository.repository.TopExpensesViewSpringDataRepository;
 import com.savethislittle.userinfo.repository.repository.UserExpenseSpringDataRepository;
 import com.savethislittle.userinfo.repository.repository.UserInfoCustomRepository;
 import com.savethislittle.userinfo.repository.repository.UserInfoSpringDataRepository;
@@ -25,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 public class UserInfoServiceImpl implements UserInfoService {
 
 	private UserInfoSpringDataRepository userInfoSpringDataRepository;
+	private TopExpensesViewSpringDataRepository topExpensesViewSpringDataRepository;
 	private UserExpenseSpringDataRepository userExpensesSpringDataRepository;
 	private ExpenseCustomRepository expenseCustomRepository;
 	private TopExpensesViewCustomRepository topExpensesViewCustomRepository;
@@ -180,6 +182,11 @@ public class UserInfoServiceImpl implements UserInfoService {
 		}
 
 		return expenses;
+	}
+
+	@Override
+	public List<TopExpensesView> findByEmail(String email) {
+		return topExpensesViewSpringDataRepository.findByEmail(email);
 	}
 
 }
