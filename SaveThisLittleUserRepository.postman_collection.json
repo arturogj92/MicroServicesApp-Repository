@@ -10,6 +10,7 @@
 		"a5476373-4773-77e7-9494-7dfebaed7a47",
 		"1736f113-71f9-db87-ab42-6ac275f7720e",
 		"a1d9136f-8749-4dbf-29a3-5c294d71a018",
+		"3d0f32b4-7dcc-95a6-0407-c6a825667685",
 		"d720256c-69ed-6597-8fc6-de3d6c0dec69",
 		"435b52a0-7b07-30c1-74d1-386829eb841d"
 	],
@@ -72,6 +73,37 @@
 			"currentHelper": "normal",
 			"helperAttributes": {},
 			"rawModeData": "{\r\n\t\t\"id\": 54,\r\n\t\t\"email\": \"rasss@test.com\",\r\n\t\t\"type\": \"type\",\r\n\t\t\"date\": \"2012-04-23T18:25:43.511Z\",\r\n\t\t\"category\": \"category\",\r\n\t\t\"subCategory\": \"trrrr\",\r\n\t\t\"note\": \"note\",\r\n\t\t\"amount\": 12.30\r\n\r\n}"
+		},
+		{
+			"id": "3d0f32b4-7dcc-95a6-0407-c6a825667685",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8090/topexpense/poncho@email.com",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
+			"data": [],
+			"dataMode": "raw",
+			"name": "GetTopExpense",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1535559390800,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\r\n\t\t\"email\": \"poncho@email.com\",\r\n\t\t\"type\": \"Puntual\",\r\n\t\t\"date\": \"2012-04-23T18:25:43.511Z\",\r\n\t\t\"category\": \"coche\",\r\n\t\t\"subCategory\": \"Alcohol/Otros\",\r\n\t\t\"note\": \"fsfs\",\r\n\t\t\"amount\": 350\r\n\r\n}"
 		},
 		{
 			"id": "435b52a0-7b07-30c1-74d1-386829eb841d",
