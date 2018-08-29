@@ -1,6 +1,7 @@
 package com.savethislittle.userinfo.repository.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.savethislittle.userinfo.repository.entity.Expenses;
 import com.savethislittle.userinfo.repository.entity.User;
@@ -25,9 +26,13 @@ public interface UserInfoService {
 
 	public List<Expenses> searchExpenseByEmail(String email);
 	
+	public List<Expenses> searchExpenseByCategoryAndMail(String category, String email);
+	
 	public Expenses searchExpenseById(Long id);
 	
 	public void updateExpense(Expenses expense);
+	
+	public Optional<User> getUserById(Long id);
 
 
 	

@@ -125,7 +125,22 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 		return expenses;
 	}
+	
+	@Override
+	public List<Expenses> searchExpenseByCategoryAndMail(String category, String email) {
+		List<Expenses> expenses = expenseCustomRepository.searchExpenseByCategoryAndMail(category, email);
+		if (expenses.isEmpty()) {
+			log.error("ACTION: searchExpenseByCategoryAndMail ERROR => expenses.size(): {}",
+					"The user doesn't have expenses asociated");
+			throw new UserInfoRepositoryException("User doesn't have expenses of that category asociated ");
 
+		}
+
+		return expenses;
+	}
+
+	
+	
 	@Override
 	public boolean checkIfUserExists(String email) {
 		// TODO Auto-generated method stub
@@ -138,6 +153,17 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 		return userCheckExists;
 
+	}
+
+	@Override
+	public Optional<User> getUserById(Long id) {
+		Optional<User> user1 = userInfoSpringDataRepository.findById(id);
+		if (user1.isPresent()) {
+			return user1;
+		}
+		
+		return null;
+	
 	}
 
 }

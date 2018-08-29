@@ -2,6 +2,7 @@ package com.savethislittle.userinfo.repository.controller;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -40,7 +41,14 @@ public class UserInfoController {
 		log.info("ACTION: createUser OUTPUT => {}", "User created");
 		return ResponseEntity.created(location).build();
 	}
-
+	
+	@GetMapping("/userid/{id}")
+	public ResponseEntity<Optional<User>> getUserById(@PathVariable Long id){
+		Optional<User> userById = userInfoService.getUserById(id);
+		return new ResponseEntity<>(userById, HttpStatus.OK);
+	}
+	
+	
 	@GetMapping("/user/{email}")
 	public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
 		log.info("ACTION: getUserByEmail INPUT: => {}", email);
@@ -64,6 +72,14 @@ public class UserInfoController {
 		log.info("ACTION: findExpensesByEmail OUTPUT => expenses size: {}", expenses.size());
 		return new ResponseEntity<>(expenses, HttpStatus.OK);
 	}
+	
+	@GetMapping("/expenses/{email}/{category}")
+	public ResponseEntity<List<Expenses>> findExpensesByCategoryAndMail(@PathVariable String category, @PathVariable String email ) {
+		log.info("ACTION: findExpensesByCategory INPUT: => {}", category, email);
+		List<Expenses> expenses = userInfoService.searchExpenseByCategoryAndMail(category, email);
+		log.info("ACTION: findExpensesByCategory OUTPUT => expenses size: {}", expenses.size());
+		return new ResponseEntity<>(expenses, HttpStatus.OK);
+	}
 
 	@GetMapping("/users")
 	public ResponseEntity<List<User>> getAllUsers() {
@@ -73,7 +89,7 @@ public class UserInfoController {
 		return new ResponseEntity<>(usersList, HttpStatus.OK);
 
 	}
-
+	
 	@PutMapping("/user")
 	public ResponseEntity<Void> updateUser(@Valid @RequestBody User user) {
 		log.info("ACTION: updateUser INPUT: => {}","ID to be UPDATED "+ user.getEmail());

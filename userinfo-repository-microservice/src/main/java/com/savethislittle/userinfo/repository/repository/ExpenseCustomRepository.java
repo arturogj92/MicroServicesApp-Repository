@@ -10,7 +10,7 @@ public interface ExpenseCustomRepository {
 	
 	public List<Expenses> searchExpenseByEmail(String email);
 	
-	
+	public List<Expenses> searchExpenseByCategoryAndMail(String category, String email);
 	
 	
 }
