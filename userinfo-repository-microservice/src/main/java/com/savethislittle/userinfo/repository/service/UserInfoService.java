@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.savethislittle.userinfo.repository.entity.Expenses;
+import com.savethislittle.userinfo.repository.entity.TopExpensesView;
 import com.savethislittle.userinfo.repository.entity.User;
 
 public interface UserInfoService {
@@ -33,6 +34,8 @@ public interface UserInfoService {
 	public void updateExpense(Expenses expense);
 	
 	public Optional<User> getUserById(Long id);
+	
+	public List<TopExpensesView> getTopExpensesViewByEmail(String email);
 
 
 	

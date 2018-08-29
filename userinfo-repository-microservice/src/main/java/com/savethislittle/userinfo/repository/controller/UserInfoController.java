@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.savethislittle.userinfo.repository.entity.Expenses;
+import com.savethislittle.userinfo.repository.entity.TopExpensesView;
 import com.savethislittle.userinfo.repository.entity.User;
 import com.savethislittle.userinfo.repository.service.UserInfoService;
 
@@ -88,6 +89,14 @@ public class UserInfoController {
 		log.info("ACTION: getAllUsers OUTPUT => users size: {}", usersList.size());
 		return new ResponseEntity<>(usersList, HttpStatus.OK);
 
+	}
+	
+	@GetMapping("/topexpense/{email}")
+	public ResponseEntity<List<TopExpensesView>> findTopExpensesByEmail(@PathVariable String email) {
+		log.info("ACTION: findExpensesByEmail INPUT: => {}", email);
+		List<TopExpensesView> expenses = userInfoService.getTopExpensesViewByEmail(email);
+		log.info("ACTION: findExpensesByEmail OUTPUT => expenses size: {}", expenses.size());
+		return new ResponseEntity<>(expenses, HttpStatus.OK);
 	}
 	
 	@PutMapping("/user")

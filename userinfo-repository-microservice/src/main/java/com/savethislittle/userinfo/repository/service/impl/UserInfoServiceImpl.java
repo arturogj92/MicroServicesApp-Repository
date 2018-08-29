@@ -6,9 +6,11 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import com.savethislittle.userinfo.repository.entity.Expenses;
+import com.savethislittle.userinfo.repository.entity.TopExpensesView;
 import com.savethislittle.userinfo.repository.entity.User;
 import com.savethislittle.userinfo.repository.exception.UserInfoRepositoryException;
 import com.savethislittle.userinfo.repository.repository.ExpenseCustomRepository;
+import com.savethislittle.userinfo.repository.repository.TopExpensesViewCustomRepository;
 import com.savethislittle.userinfo.repository.repository.UserExpenseSpringDataRepository;
 import com.savethislittle.userinfo.repository.repository.UserInfoCustomRepository;
 import com.savethislittle.userinfo.repository.repository.UserInfoSpringDataRepository;
@@ -25,6 +27,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	private UserInfoSpringDataRepository userInfoSpringDataRepository;
 	private UserExpenseSpringDataRepository userExpensesSpringDataRepository;
 	private ExpenseCustomRepository expenseCustomRepository;
+	private TopExpensesViewCustomRepository topExpensesViewCustomRepository;
 	private UserInfoCustomRepository userInfoCustomRepository;
 
 	@Override
@@ -164,6 +167,19 @@ public class UserInfoServiceImpl implements UserInfoService {
 		
 		return null;
 	
+	}
+
+	@Override
+	public List<TopExpensesView> getTopExpensesViewByEmail(String email) {
+		List<TopExpensesView> expenses = topExpensesViewCustomRepository.searchTopExpenseViewByEmail(email);
+		if (expenses.isEmpty()) {
+			log.error("ACTION: findExpensesByEmail ERROR => expensessize(): {}",
+					"The user doesn't have expenses asociated");
+			throw new UserInfoRepositoryException("User doesn't have expenses asociated");
+
+		}
+
+		return expenses;
 	}
 
 }
