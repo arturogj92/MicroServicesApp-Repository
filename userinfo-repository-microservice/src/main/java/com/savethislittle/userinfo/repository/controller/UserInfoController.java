@@ -94,7 +94,6 @@ public class UserInfoController {
 	@GetMapping("/topexpense/{email}")
 	public ResponseEntity<List<TopExpensesView>> findTopExpensesByEmail(@PathVariable String email) {
 		log.info("ACTION: findExpensesByEmail INPUT: => {}", email);
-//		List<TopExpensesView> expenses = userInfoService.getTopExpensesViewByEmail(email);
 		List<TopExpensesView> expenses = userInfoService.findByEmail(email);
 		log.info("ACTION: findExpensesByEmail OUTPUT => expenses size: {}", expenses.size());
 		return new ResponseEntity<>(expenses, HttpStatus.OK);

@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 
 
-@Table(name = "TOPEXPENSESVIEW")
+@Table(name = "expensescategory")
 @Entity
 @Immutable
 public class TopExpensesView {
@@ -24,9 +24,12 @@ public class TopExpensesView {
 
 //	@GeneratedValue(strategy = GenerationType.AUTO)
 //	@Column(name = "id", updatable = false, nullable = false)
-//	private Long id;
-//	@Version
 	@Id
+	@Column(name = "id")
+	private Long id;
+//	@Version
+
+	
 	@Column(name = "email")
 	private String email;
 
