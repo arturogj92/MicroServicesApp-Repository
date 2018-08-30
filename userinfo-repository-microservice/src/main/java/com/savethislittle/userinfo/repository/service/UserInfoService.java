@@ -37,7 +37,7 @@ public interface UserInfoService {
 	
 	public List<TopExpensesView> getTotalAmountCategory(String email);
 
-	public List<Expenses> searchExpenseByDateAndMail(String email, String date);
+	public List<Expenses> searchExpenseByDateAndMail(String date, String email);
 	
 
 }

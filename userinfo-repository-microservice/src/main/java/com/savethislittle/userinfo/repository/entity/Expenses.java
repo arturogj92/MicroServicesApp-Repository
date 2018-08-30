@@ -1,6 +1,6 @@
 package com.savethislittle.userinfo.repository.entity;
 
-import java.time.LocalDate;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
-import javax.validation.constraints.Size;
+
+import org.joda.time.DateTime;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -34,9 +35,15 @@ public class Expenses {
 
 	// @Temporal(TemporalType.DATE)
 	// @Size(min = 1, max = 50)
-	@Column(name = "DATE", nullable = false)
-	private LocalDate date;
+//	@Column(name = "DATE", nullable = false)
+//	private DateTime date;
 
+	@Column(name = "YEAR", nullable = false)
+	private String year;
+	
+	@Column(name = "MONTH", nullable = false)
+	private String month;
+	
 //	@Size(min = 1, max = 50)
 	@Column(name = "CATEGORY", nullable = false)
 	private String category;

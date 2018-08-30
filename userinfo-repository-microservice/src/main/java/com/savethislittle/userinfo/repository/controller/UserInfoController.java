@@ -43,6 +43,23 @@ public class UserInfoController {
 		return ResponseEntity.created(location).build();
 	}
 	
+
+	@PostMapping("/expenses")
+	public void createExpense(@Valid @RequestBody Expenses expense) {
+		log.info("ACTION: createExpense INPUT: => {}", " NOTE: " + expense.getNote() + " USER: " + expense.getEmail());
+		userInfoService.createExpense(expense);
+		log.info("ACTION: createExpense OUTPUT: => {}", "Expense created");
+	}
+	
+	@GetMapping("/users")
+	public ResponseEntity<List<User>> getAllUsers() {
+		log.info("ACTION: getAllUsers INPUT: => {}");
+		List<User> usersList = userInfoService.findAll();
+		log.info("ACTION: getAllUsers OUTPUT => users size: {}", usersList.size());
+		return new ResponseEntity<>(usersList, HttpStatus.OK);
+
+	}
+	
 	@GetMapping("/userid/{id}")
 	public ResponseEntity<Optional<User>> getUserById(@PathVariable Long id){
 		Optional<User> userById = userInfoService.getUserById(id);
@@ -57,13 +74,6 @@ public class UserInfoController {
 		log.info("ACTION: getUserByEmail OUTPUT => user: {}"," USERNAME: " + user.getUserName()+ " EMAIL: " + user.getEmail());
 		return new ResponseEntity<>(user, HttpStatus.OK);
 
-	}
-
-	@PostMapping("/expenses")
-	public void createExpense(@Valid @RequestBody Expenses expense) {
-		log.info("ACTION: createExpense INPUT: => {}", " NOTE: " + expense.getNote() + " USER: " + expense.getEmail());
-		userInfoService.createExpense(expense);
-		log.info("ACTION: createExpense OUTPUT: => {}", "Expense created");
 	}
 
 	@GetMapping("/expenses/{email}")
@@ -91,15 +101,7 @@ public class UserInfoController {
 		return new ResponseEntity<>(expenses, HttpStatus.OK);
 	}
 
-	@GetMapping("/users")
-	public ResponseEntity<List<User>> getAllUsers() {
-		log.info("ACTION: getAllUsers INPUT: => {}");
-		List<User> usersList = userInfoService.findAll();
-		log.info("ACTION: getAllUsers OUTPUT => users size: {}", usersList.size());
-		return new ResponseEntity<>(usersList, HttpStatus.OK);
-
-	}
-	
+	//TODO => Como ahora las separo por fechas, no funciona bien la suma, ya que no suma las fechas.
 	@GetMapping("/totalamountcategory/{email}")
 	public ResponseEntity<List<TopExpensesView>> getTotalAmountCategory(@PathVariable String email) {
 		log.info("ACTION: findExpensesByEmail INPUT: => {}", email);

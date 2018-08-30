@@ -196,7 +196,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public List<Expenses> searchExpenseByDateAndMail(String email, String date) {
+	public List<Expenses> searchExpenseByDateAndMail(String date, String email) {
 		List<Expenses> expenses = expenseCustomRepository.searchExpenseByDateAndMail(date, email);
 		if (expenses.isEmpty()) {
 			log.error("ACTION: searchExpenseByCategoryAndMail ERROR => expenses.size(): {}",
