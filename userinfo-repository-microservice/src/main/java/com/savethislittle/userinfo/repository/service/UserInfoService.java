@@ -14,30 +14,33 @@ public interface UserInfoService {
 	public void updateUser(User user);
 
 	public void deleteUserByEmail(String email);
-	
+
 	public User getUserByEmail(String email);
-	
+
 	public boolean checkIfUserExists(String email);
 
 	public List<User> findAll();
 
 	public Expenses createExpense(Expenses expense);
-	
+
 	public void deleteExpense(Long id);
 
-	public List<Expenses> searchExpenseByEmail(String email);
-	
-	public List<Expenses> searchExpenseByCategoryAndMail(String category, String email);
-	
 	public Expenses searchExpenseById(Long id);
-	
-	public void updateExpense(Expenses expense);
-	
-	public Optional<User> getUserById(Long id);
-	
-	public List<TopExpensesView> getTotalAmountCategory(String email);
 
-	public List<Expenses> searchExpenseByDateAndMail(String date, String email);
-	
+	public void updateExpense(Expenses expense);
+
+	public Optional<User> getUserById(Long id);
+
+	public List<Expenses> searchExpenseByEmail(String email);
+
+	public List<Expenses> searchExpenseByYearAndEmail(String year, String email);
+
+	public List<Expenses> searchExpenseByMonthAndYearAndEmail(String email, String month, String year);
+
+	public List<Expenses> searchExpenseByCategoryAndMail(String category, String email);
+
+	public List<TopExpensesView> getTotalAmountExpensedInCategoryByYear(String email, String year);
+
+	public List<TopExpensesView> getTotalAmountExpensedInCategoryByMonthAndYear(String email, String month, String year);
 
 }

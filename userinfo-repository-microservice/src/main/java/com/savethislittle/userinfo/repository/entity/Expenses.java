@@ -38,10 +38,10 @@ public class Expenses {
 //	@Column(name = "DATE", nullable = false)
 //	private DateTime date;
 
-	@Column(name = "YEAR", nullable = false)
+	@Column(name = "YEARDB", nullable = false)
 	private String year;
 	
-	@Column(name = "MONTH", nullable = false)
+	@Column(name = "MONTHDB", nullable = false)
 	private String month;
 	
 //	@Size(min = 1, max = 50)

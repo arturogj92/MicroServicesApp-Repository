@@ -7,10 +7,14 @@
 		"6c67269a-e1d6-90e1-9040-7b7becfae8f0",
 		"e4183462-f1a1-a894-9cf7-c157c72745cf",
 		"3b1f8250-65ee-ea89-2a72-2574e1ab8bbe",
-		"a5476373-4773-77e7-9494-7dfebaed7a47",
 		"1736f113-71f9-db87-ab42-6ac275f7720e",
 		"a1d9136f-8749-4dbf-29a3-5c294d71a018",
-		"3d0f32b4-7dcc-95a6-0407-c6a825667685",
+		"a5476373-4773-77e7-9494-7dfebaed7a47",
+		"cd7e0c40-615a-676c-f6e6-b5287db5eded",
+		"c5fcc7e8-415b-9e11-7574-aa7fc55d729d",
+		"933b1987-de16-66da-1f2a-5bdb21787e78",
+		"48de39d9-f934-9e68-3461-888450b78c8c",
+		"09fd04a1-9e84-43cb-e5f8-04d17f113355",
 		"d720256c-69ed-6597-8fc6-de3d6c0dec69",
 		"435b52a0-7b07-30c1-74d1-386829eb841d"
 	],
@@ -20,6 +24,37 @@
 	"owner": "752988",
 	"public": false,
 	"requests": [
+		{
+			"id": "09fd04a1-9e84-43cb-e5f8-04d17f113355",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8090/totalamountcategorymonth/poncho@email.com/2018",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
+			"data": [],
+			"dataMode": "raw",
+			"name": "GetTotalAmountCategoryByYearEmail",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1535664370958,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\r\n\t\t\"email\": \"poncho@email.com\",\r\n\t\t\"type\": \"Puntual\",\r\n\t\t\"date\": \"2012-04-23T18:25:43.511Z\",\r\n\t\t\"category\": \"coche\",\r\n\t\t\"subCategory\": \"Alcohol/Otros\",\r\n\t\t\"note\": \"fsfs\",\r\n\t\t\"amount\": 350\r\n\r\n}"
+		},
 		{
 			"id": "1736f113-71f9-db87-ab42-6ac275f7720e",
 			"headers": "",
@@ -56,54 +91,22 @@
 			],
 			"url": "http://localhost:8090/expenses",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "PUT",
-			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
 			"data": [],
 			"dataMode": "raw",
-			"name": "UpdateExpenses",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1535203798314,
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"rawModeData": "{\r\n\t\t\"id\": 54,\r\n\t\t\"email\": \"rasss@test.com\",\r\n\t\t\"type\": \"type\",\r\n\t\t\"date\": \"2012-04-23T18:25:43.511Z\",\r\n\t\t\"category\": \"category\",\r\n\t\t\"subCategory\": \"trrrr\",\r\n\t\t\"note\": \"note\",\r\n\t\t\"amount\": 12.30\r\n\r\n}"
-		},
-		{
-			"id": "3d0f32b4-7dcc-95a6-0407-c6a825667685",
-			"headers": "Content-Type: application/json\n",
-			"headerData": [
-				{
-					"key": "Content-Type",
-					"value": "application/json",
-					"description": "",
-					"enabled": true
-				}
-			],
-			"url": "http://localhost:8090/topexpense/poncho@email.com",
-			"queryParams": [],
-			"pathVariables": {},
-			"pathVariableData": [],
-			"preRequestScript": null,
-			"method": "GET",
-			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
-			"data": [],
-			"dataMode": "raw",
-			"name": "GetTopExpense",
+			"time": 1535660029616,
+			"name": "UpdateExpensesByID",
 			"description": "",
-			"descriptionFormat": "html",
-			"time": 1535559390800,
-			"version": 2,
+			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
 			"responses": [],
-			"tests": null,
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"rawModeData": "{\r\n\t\t\"email\": \"poncho@email.com\",\r\n\t\t\"type\": \"Puntual\",\r\n\t\t\"date\": \"2012-04-23T18:25:43.511Z\",\r\n\t\t\"category\": \"coche\",\r\n\t\t\"subCategory\": \"Alcohol/Otros\",\r\n\t\t\"note\": \"fsfs\",\r\n\t\t\"amount\": 350\r\n\r\n}"
+			"rawModeData": "{\r\n\t\t\"id\": 54,\r\n\t\t\"email\": \"rasss@test.com\",\r\n\t\t\"type\": \"type\",\r\n\t\t\"month\": \"AUGUST\",\r\n\t\t\"year\": \"2018\",\r\n\t\t\"category\": \"category\",\r\n\t\t\"subCategory\": \"trrrr\",\r\n\t\t\"note\": \"note\",\r\n\t\t\"amount\": 12.30\r\n\r\n}"
 		},
 		{
 			"id": "435b52a0-7b07-30c1-74d1-386829eb841d",
@@ -129,6 +132,36 @@
 			"helperAttributes": {}
 		},
 		{
+			"id": "48de39d9-f934-9e68-3461-888450b78c8c",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8090/totalamountcategorymonth/poncho@email.com/march",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1535663651437,
+			"name": "GetTotalAmountCategoryByMonthYearEmail",
+			"description": "",
+			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
+			"responses": [],
+			"rawModeData": "{\r\n\t\t\"email\": \"poncho@email.com\",\r\n\t\t\"type\": \"Puntual\",\r\n\t\t\"date\": \"2012-04-23T18:25:43.511Z\",\r\n\t\t\"category\": \"coche\",\r\n\t\t\"subCategory\": \"Alcohol/Otros\",\r\n\t\t\"note\": \"fsfs\",\r\n\t\t\"amount\": 350\r\n\r\n}"
+		},
+		{
 			"id": "6c67269a-e1d6-90e1-9040-7b7becfae8f0",
 			"headers": "Content-Type: application/json\n",
 			"headerData": [
@@ -150,12 +183,69 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1535205904940,
+			"time": 1535660324142,
 			"name": "CreateExpense",
 			"description": "",
 			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
-			"responses": [],
-			"rawModeData": "{\r\n\t\t\"email\": \"rocosssss@ras.es\",\r\n\t\t\"type\": \"type\",\r\n\t\t\"date\": \"2012-04-23T18:25:43.511Z\",\r\n\t\t\"category\": \"category\",\r\n\t\t\"subCategory\": \"trrrr\",\r\n\t\t\"note\": \"note\",\r\n\t\t\"amount\": 12.30\r\n\r\n}"
+			"responses": [
+				{
+					"status": "",
+					"responseCode": {
+						"code": 200,
+						"name": "OK"
+					},
+					"time": 210,
+					"headers": [
+						{
+							"name": "content-length",
+							"key": "content-length",
+							"value": "0",
+							"description": "The length of the response body in octets (8-bit bytes)"
+						},
+						{
+							"name": "date",
+							"key": "date",
+							"value": "Thu, 30 Aug 2018 20:15:25 GMT",
+							"description": "The date and time that the message was sent"
+						}
+					],
+					"cookies": [],
+					"mime": "",
+					"text": "",
+					"language": "plainText",
+					"rawDataType": "text",
+					"previewType": "text",
+					"searchResultScrolledTo": -1,
+					"forceNoPretty": false,
+					"write": true,
+					"empty": false,
+					"failed": false,
+					"name": "CreateExpense2",
+					"id": "4008ad5e-94b3-b299-2df7-8eb3b99942e4",
+					"isSample": true,
+					"scrollToResult": false,
+					"runTests": false,
+					"request": {
+						"url": "http://localhost:8090/expenses",
+						"pathVariables": {},
+						"pathVariableData": [],
+						"queryParams": [],
+						"headerData": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"enabled": true,
+								"description": ""
+							}
+						],
+						"headers": "Content-Type: application/json\n",
+						"data": "{\r\n\t\t\"email\": \"poncho@email.com\",\r\n\t\t\"type\": \"one-time expense\",\r\n\t\t\"month\": \"august\",\r\n\t\t\"year\": \"2018\",\r\n\t\t\"category\": \"alcohol2\",\r\n\t\t\"subCategory\": \"rum\",\r\n\t\t\"note\": \"ron del alcampo\",\r\n\t\t\"amount\": 10\r\n\r\n}",
+						"method": "POST",
+						"dataMode": "raw"
+					}
+				}
+			],
+			"rawModeData": "{\r\n\t\t\"email\": \"poncho@email.com\",\r\n\t\t\"type\": \"one-time expense\",\r\n\t\t\"month\": \"august\",\r\n\t\t\"year\": \"2018\",\r\n\t\t\"category\": \"alcohol\",\r\n\t\t\"subCategory\": \"sider\",\r\n\t\t\"note\": \"ladron de manzanas\",\r\n\t\t\"amount\": 33\r\n\r\n}"
 		},
 		{
 			"id": "6d05e29c-a088-b6cf-f17a-27262dfe02cb",
@@ -179,41 +269,49 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1535042080153,
+			"time": 1535660320204,
 			"name": "CreateUser",
 			"description": "",
 			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
 			"responses": [],
-			"rawModeData": "{\r\n\t\"userName\": \"rolan\",\r\n    \"password\": \"password\",\r\n    \"email\": \"emaiffld@email.com\",\r\n    \"economyInfo\": {\r\n    \t\"monthlyEarning\": 1560.00,\r\n\t\t\"currentMoney\": 1250.00\r\n    }\r\n} "
+			"rawModeData": "{\r\n\t\"userName\": \"poncho\",\r\n    \"password\": \"123456\",\r\n    \"email\": \"poncho@email.com\",\r\n    \"economyInfo\": {\r\n    \t\"monthlyEarning\": 1560.00,\r\n\t\t\"currentMoney\": 1250.00\r\n    }\r\n} "
 		},
 		{
-			"id": "a1d9136f-8749-4dbf-29a3-5c294d71a018",
-			"headers": "",
-			"headerData": [],
-			"url": "http://localhost:8090/user/loco@arturo.com",
+			"id": "933b1987-de16-66da-1f2a-5bdb21787e78",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8090/expenses/poncho@email.com/alcohol",
 			"queryParams": [],
 			"pathVariables": {},
 			"pathVariableData": [],
 			"preRequestScript": null,
 			"method": "GET",
 			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
-			"data": null,
-			"dataMode": "params",
-			"name": "GetUserByEmail",
+			"data": [],
+			"dataMode": "raw",
+			"name": "GetExpensesByCategoryAndMail",
 			"description": "",
 			"descriptionFormat": "html",
-			"time": 1535039907994,
+			"time": 1535655836660,
 			"version": 2,
 			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
-			"helperAttributes": {}
+			"helperAttributes": {},
+			"rawModeData": "{\r\n\t\t\"email\": \"poncho@email.com\",\r\n\t\t\"type\": \"Puntual\",\r\n\t\t\"date\": \"2012-04-23T18:25:43.511Z\",\r\n\t\t\"category\": \"coche\",\r\n\t\t\"subCategory\": \"Alcohol/Otros\",\r\n\t\t\"note\": \"fsfs\",\r\n\t\t\"amount\": 350\r\n\r\n}"
 		},
 		{
-			"id": "a5476373-4773-77e7-9494-7dfebaed7a47",
+			"id": "a1d9136f-8749-4dbf-29a3-5c294d71a018",
 			"headers": "",
 			"headerData": [],
-			"url": "http://localhost:8090/expenses/loco@farturo.com",
+			"url": "http://localhost:8090/user/poncho@email.com",
 			"queryParams": [],
 			"preRequestScript": null,
 			"pathVariables": {},
@@ -225,11 +323,86 @@
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1535207817214,
-			"name": "getExpenseByEmail",
+			"time": 1535655661328,
+			"name": "GetUserByEmail",
 			"description": "",
 			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
 			"responses": []
+		},
+		{
+			"id": "a5476373-4773-77e7-9494-7dfebaed7a47",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:8090/expenses/poncho@email.com",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1535664538812,
+			"name": "GetExpenseByEmail",
+			"description": "",
+			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
+			"responses": []
+		},
+		{
+			"id": "c5fcc7e8-415b-9e11-7574-aa7fc55d729d",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8090/expensesdate/poncho@email.com/2018/march",
+			"queryParams": [],
+			"preRequestScript": null,
+			"pathVariables": {},
+			"pathVariableData": [],
+			"method": "GET",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1535665085519,
+			"name": "GetExpensesByMonthYearAndEmail",
+			"description": "",
+			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
+			"responses": [],
+			"rawModeData": "{\r\n\t\t\"email\": \"poncho@email.com\",\r\n\t\t\"type\": \"Puntual\",\r\n\t\t\"date\": \"2012-04-23T18:25:43.511Z\",\r\n\t\t\"category\": \"coche\",\r\n\t\t\"subCategory\": \"Alcohol/Otros\",\r\n\t\t\"note\": \"fsfs\",\r\n\t\t\"amount\": 350\r\n\r\n}"
+		},
+		{
+			"id": "cd7e0c40-615a-676c-f6e6-b5287db5eded",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:8090/expensesdate/poncho@email.com/2018",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
+			"data": null,
+			"dataMode": "params",
+			"name": "GetExpenseByYearAndMail",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1535666025986,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
 		},
 		{
 			"id": "d720256c-69ed-6597-8fc6-de3d6c0dec69",
@@ -266,23 +439,22 @@
 			],
 			"url": "http://localhost:8090/user",
 			"queryParams": [],
+			"preRequestScript": null,
 			"pathVariables": {},
 			"pathVariableData": [],
-			"preRequestScript": null,
 			"method": "PUT",
-			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
 			"data": [],
 			"dataMode": "raw",
-			"name": "UpdateUser",
-			"description": "",
-			"descriptionFormat": "html",
-			"time": 1535042066383,
 			"version": 2,
-			"responses": [],
 			"tests": null,
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"rawModeData": "{\r\n\t\"id\" : \"202\",\r\n\t\"userName\": \"rolan\",\r\n    \"password\": \"password\",\r\n    \"email\": \"emaiffld@email.com\",\r\n    \"economyInfo\": {\r\n    \t\"monthlyEarning\": 1560.00,\r\n\t\t\"currentMoney\": 1250.00\r\n    }\r\n} "
+			"time": 1535660312695,
+			"name": "UpdateUserByID",
+			"description": "",
+			"collectionId": "a5124f60-09c4-7eb7-6c6c-0ded90c72b6b",
+			"responses": [],
+			"rawModeData": "{\r\n\t\"id\" : \"202\",\r\n\t\"userName\": \"rolan\",\r\n    \"password\": \"password\",\r\n    \"email\": \"poncho@email.com\",\r\n    \"economyInfo\": {\r\n    \t\"monthlyEarning\": 1560.00,\r\n\t\t\"currentMoney\": 1250.00\r\n    }\r\n} "
 		}
 	]
 }

@@ -14,7 +14,7 @@ import lombok.Setter;
 @Getter
 
 
-@Table(name = "expensescategory")
+@Table(name = "expensescategorybymonthandyear")
 @Entity
 @Immutable
 public class TopExpensesView {
@@ -29,6 +29,11 @@ public class TopExpensesView {
 	private Long id;
 //	@Version
 
+	@Column(name ="monthdb")
+	private String month;
+	
+	@Column(name ="yeardb")
+	private String year;
 	
 	@Column(name = "email")
 	private String email;

@@ -12,7 +12,7 @@ import com.savethislittle.userinfo.repository.exception.UserInfoRepositoryExcept
 import com.savethislittle.userinfo.repository.repository.ExpenseCustomRepository;
 import com.savethislittle.userinfo.repository.repository.TopExpensesViewCustomRepository;
 import com.savethislittle.userinfo.repository.repository.TopExpensesViewSpringDataRepository;
-import com.savethislittle.userinfo.repository.repository.UserExpenseSpringDataRepository;
+import com.savethislittle.userinfo.repository.repository.ExpenseSpringDataRepository;
 import com.savethislittle.userinfo.repository.repository.UserInfoCustomRepository;
 import com.savethislittle.userinfo.repository.repository.UserInfoSpringDataRepository;
 import com.savethislittle.userinfo.repository.service.UserInfoService;
@@ -27,7 +27,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	private UserInfoSpringDataRepository userInfoSpringDataRepository;
 	private TopExpensesViewSpringDataRepository topExpensesViewSpringDataRepository;
-	private UserExpenseSpringDataRepository userExpensesSpringDataRepository;
+	private ExpenseSpringDataRepository expensesSpringDataRepository;
 	private ExpenseCustomRepository expenseCustomRepository;
 	private TopExpensesViewCustomRepository topExpensesViewCustomRepository;
 	private UserInfoCustomRepository userInfoCustomRepository;
@@ -43,13 +43,13 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public Expenses createExpense(Expenses expense) {
-		userExpensesSpringDataRepository.save(expense);
+		expensesSpringDataRepository.save(expense);
 		return null;
 	}
 
 	@Override
 	public Expenses searchExpenseById(Long id) {
-		Optional<Expenses> expenseOptional = userExpensesSpringDataRepository.findById(id);
+		Optional<Expenses> expenseOptional = expensesSpringDataRepository.findById(id);
 		if (!expenseOptional.isPresent()) {
 			log.error("ACTION: searchExpenseById ERROR => {}", "Expense ** " + id + " ** not found");
 			throw new UserInfoRepositoryException("The expense doesn't exists");
@@ -60,7 +60,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public void deleteExpense(Long id) {
 		searchExpenseById(id);
-		userExpensesSpringDataRepository.deleteById(id);
+		expensesSpringDataRepository.deleteById(id);
 	}
 
 	@Override
@@ -90,7 +90,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Override
 	public void updateExpense(Expenses expense) {
 		searchExpenseById(expense.getId());
-		userExpensesSpringDataRepository.save(expense);
+		expensesSpringDataRepository.save(expense);
 	}
 
 	@Override
@@ -134,7 +134,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public List<Expenses> searchExpenseByCategoryAndMail(String category, String email) {
-		List<Expenses> expenses = expenseCustomRepository.searchExpenseByCategoryAndMail(category, email);
+		List<Expenses> expenses = expenseCustomRepository.searchExpenseByCategoryAndEMail(category, email);
 		if (expenses.isEmpty()) {
 			log.error("ACTION: searchExpenseByCategoryAndMail ERROR => expenses.size(): {}",
 					"The user doesn't have expenses asociated");
@@ -170,42 +170,58 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	}
 
-//	@Override
-//	public List<TopExpensesView> getTopExpensesViewByEmail(String email) {
-//		List<TopExpensesView> expenses = topExpensesViewCustomRepository.searchTopExpenseViewByEmail(email);
-//		if (expenses.isEmpty()) {
-//			log.error("ACTION: findExpensesByEmail ERROR => expensessize(): {}",
-//					"The user doesn't have expenses asociated");
-//			throw new UserInfoRepositoryException("User doesn't have expenses asociated");
-//
-//		}
-//
-//		return expenses;
-//	}
 
 	@Override
-	public List<TopExpensesView> getTotalAmountCategory(String email) {
-		List<TopExpensesView> expenses = topExpensesViewSpringDataRepository.findByEmail(email);
+	public List<TopExpensesView> getTotalAmountExpensedInCategoryByMonthAndYear(String email, String month, String year) {
+		List<TopExpensesView> expenses = topExpensesViewSpringDataRepository.findByEmailAndMonthAndYear(email, month, year);
 		if (expenses.isEmpty()) {
-			log.error("ACTION: getTopExpensesViewByEmail ERROR => expensessize(): {}",
+			log.error("ACTION: getTotalAmountExpensedInCategoryByMonthAndYear ERROR => expensessize(): {}",
 					"The user doesn't have expenses asociated");
 			throw new UserInfoRepositoryException("User doesn't have expenses asociated");
 		}
 
-		return topExpensesViewSpringDataRepository.findByEmail(email);
+		return expenses;
 	}
 
 	@Override
-	public List<Expenses> searchExpenseByDateAndMail(String date, String email) {
-		List<Expenses> expenses = expenseCustomRepository.searchExpenseByDateAndMail(date, email);
+	public List<TopExpensesView> getTotalAmountExpensedInCategoryByYear(String email, String year) {
+		List<TopExpensesView> expenses = topExpensesViewSpringDataRepository.findByEmailAndYear(email, year);
 		if (expenses.isEmpty()) {
-			log.error("ACTION: searchExpenseByCategoryAndMail ERROR => expenses.size(): {}",
+			log.error("ACTION: getTotalAmountExpensedInCategoryByYear ERROR => expensessize(): {}",
 					"The user doesn't have expenses asociated");
-			throw new UserInfoRepositoryException("User doesn't have expenses of that date asociated ");
+			throw new UserInfoRepositoryException("User doesn't have expenses asociated");
+		}
+
+		return expenses;
+	}
+
+
+
+	@Override
+	public List<Expenses> searchExpenseByMonthAndYearAndEmail(String email, String month, String year) {
+		List<Expenses> expenses = expensesSpringDataRepository.findByMonthAndYearAndEmail(month, year, email);
+		if (expenses.isEmpty()) {
+			log.error("ACTION: findExpensesByEmail ERROR => expensessize(): {}",
+					"The user doesn't have expenses asociated");
+			throw new UserInfoRepositoryException("User doesn't have expenses asociated");
 
 		}
 
 		return expenses;
 	}
+
+	@Override
+	public List<Expenses> searchExpenseByYearAndEmail(String email, String year) {
+		List<Expenses> expenses = expensesSpringDataRepository.findByYearAndEmail(year, email);
+		if (expenses.isEmpty()) {
+			log.error("ACTION: findExpensesByEmail ERROR => expensessize(): {}",
+					"The user doesn't have expenses asociated");
+			throw new UserInfoRepositoryException("User doesn't have expenses asociated THIS YEAR");
+
+		}
+
+		return expenses;
+	}
+
 
 }

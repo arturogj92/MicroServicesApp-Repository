@@ -12,4 +12,7 @@ public interface TopExpensesViewSpringDataRepository extends JpaRepository<TopEx
 
 	public List<TopExpensesView> findByEmail(String email);
 	
+	public List<TopExpensesView> findByEmailAndMonthAndYear(String email, String month, String year);
+
+	public List<TopExpensesView> findByEmailAndYear(String email, String year);
 }
