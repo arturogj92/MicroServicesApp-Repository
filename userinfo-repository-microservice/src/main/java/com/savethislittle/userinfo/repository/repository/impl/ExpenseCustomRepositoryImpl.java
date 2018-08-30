@@ -1,5 +1,6 @@
 package com.savethislittle.userinfo.repository.repository.impl;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -34,12 +35,26 @@ public class ExpenseCustomRepositoryImpl implements ExpenseCustomRepository {
 
 	}
 	
+	
+	
 	public List<Expenses> searchExpenseByCategoryAndMail(String category, String email) {
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 		CriteriaQuery<Expenses> criteriaQuery = criteriaBuilder.createQuery(Expenses.class);
 		Root<Expenses> root = criteriaQuery.from(Expenses.class);
 		criteriaQuery.select(root);
 		criteriaQuery.where(criteriaBuilder.equal(root.get("category"), category),
+							criteriaBuilder.equal(root.get("email"), email));
+		List<Expenses> expensesList = this.em.createQuery(criteriaQuery).getResultList();
+		return expensesList;
+
+	}
+	
+	public List<Expenses> searchExpenseByDateAndMail(String date, String email) {
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+		CriteriaQuery<Expenses> criteriaQuery = criteriaBuilder.createQuery(Expenses.class);
+		Root<Expenses> root = criteriaQuery.from(Expenses.class);
+		criteriaQuery.select(root);
+		criteriaQuery.where(criteriaBuilder.like(root.get("date"), date),
 							criteriaBuilder.equal(root.get("email"), email));
 		List<Expenses> expensesList = this.em.createQuery(criteriaQuery).getResultList();
 		return expensesList;

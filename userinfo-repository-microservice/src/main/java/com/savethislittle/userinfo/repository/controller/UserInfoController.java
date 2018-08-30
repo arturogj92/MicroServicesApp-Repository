@@ -81,6 +81,15 @@ public class UserInfoController {
 		log.info("ACTION: findExpensesByCategory OUTPUT => expenses size: {}", expenses.size());
 		return new ResponseEntity<>(expenses, HttpStatus.OK);
 	}
+	
+	//TODO => Hacer tambien para category y date
+	@GetMapping("/expensesdate/{email}/{date}")
+	public ResponseEntity<List<Expenses>> findExpensesByDateAndMail(@PathVariable String date, @PathVariable String email ) {
+		log.info("ACTION: findExpensesByDateAndMail INPUT: => {}", date, email);
+		List<Expenses> expenses = userInfoService.searchExpenseByDateAndMail(date, email);
+		log.info("ACTION: findExpensesByDateAndMail OUTPUT => expenses size: {}", expenses.size());
+		return new ResponseEntity<>(expenses, HttpStatus.OK);
+	}
 
 	@GetMapping("/users")
 	public ResponseEntity<List<User>> getAllUsers() {
@@ -91,10 +100,10 @@ public class UserInfoController {
 
 	}
 	
-	@GetMapping("/topexpense/{email}")
-	public ResponseEntity<List<TopExpensesView>> findTopExpensesByEmail(@PathVariable String email) {
+	@GetMapping("/totalamountcategory/{email}")
+	public ResponseEntity<List<TopExpensesView>> getTotalAmountCategory(@PathVariable String email) {
 		log.info("ACTION: findExpensesByEmail INPUT: => {}", email);
-		List<TopExpensesView> expenses = userInfoService.getTopExpensesViewByEmail(email);
+		List<TopExpensesView> expenses = userInfoService.getTotalAmountCategory(email);
 		log.info("ACTION: findExpensesByEmail OUTPUT => expenses size: {}", expenses.size());
 		return new ResponseEntity<>(expenses, HttpStatus.OK);
 	}

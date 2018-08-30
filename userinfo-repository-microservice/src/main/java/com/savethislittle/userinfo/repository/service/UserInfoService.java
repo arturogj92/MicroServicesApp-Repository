@@ -35,9 +35,9 @@ public interface UserInfoService {
 	
 	public Optional<User> getUserById(Long id);
 	
-	public List<TopExpensesView> getTopExpensesViewByEmail(String email);
+	public List<TopExpensesView> getTotalAmountCategory(String email);
 
-
+	public List<Expenses> searchExpenseByDateAndMail(String email, String date);
 	
 
 }

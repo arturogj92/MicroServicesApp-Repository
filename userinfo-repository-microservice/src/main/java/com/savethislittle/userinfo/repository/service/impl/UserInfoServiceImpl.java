@@ -72,9 +72,10 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 			// Double check to see if the user email belongs to the user to be updated.
 			if (!userAux.isEmpty()) {
-				if (userAux.get(0).getEmail().toString() != findById.get().getEmail().toString())
+				if (userAux.get(0).getEmail().toString() != findById.get().getEmail().toString()) {
 					log.error("ACTION: updateUser ERROR => {}", "User email " + user.getEmail() + " is in use");
-				throw new UserInfoRepositoryException("User email is in use");
+					throw new UserInfoRepositoryException("User email is in use");
+				}
 			}
 			userInfoSpringDataRepository.save(user);
 		}
@@ -130,7 +131,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 		return expenses;
 	}
-	
+
 	@Override
 	public List<Expenses> searchExpenseByCategoryAndMail(String category, String email) {
 		List<Expenses> expenses = expenseCustomRepository.searchExpenseByCategoryAndMail(category, email);
@@ -144,8 +145,6 @@ public class UserInfoServiceImpl implements UserInfoService {
 		return expenses;
 	}
 
-	
-	
 	@Override
 	public boolean checkIfUserExists(String email) {
 		// TODO Auto-generated method stub
@@ -166,9 +165,9 @@ public class UserInfoServiceImpl implements UserInfoService {
 		if (user1.isPresent()) {
 			return user1;
 		}
-		
+
 		return null;
-	
+
 	}
 
 //	@Override
@@ -185,15 +184,28 @@ public class UserInfoServiceImpl implements UserInfoService {
 //	}
 
 	@Override
-	public List<TopExpensesView> getTopExpensesViewByEmail(String email) {
+	public List<TopExpensesView> getTotalAmountCategory(String email) {
 		List<TopExpensesView> expenses = topExpensesViewSpringDataRepository.findByEmail(email);
 		if (expenses.isEmpty()) {
 			log.error("ACTION: getTopExpensesViewByEmail ERROR => expensessize(): {}",
-			"The user doesn't have expenses asociated");
+					"The user doesn't have expenses asociated");
 			throw new UserInfoRepositoryException("User doesn't have expenses asociated");
 		}
-		
+
 		return topExpensesViewSpringDataRepository.findByEmail(email);
+	}
+
+	@Override
+	public List<Expenses> searchExpenseByDateAndMail(String email, String date) {
+		List<Expenses> expenses = expenseCustomRepository.searchExpenseByDateAndMail(date, email);
+		if (expenses.isEmpty()) {
+			log.error("ACTION: searchExpenseByCategoryAndMail ERROR => expenses.size(): {}",
+					"The user doesn't have expenses asociated");
+			throw new UserInfoRepositoryException("User doesn't have expenses of that date asociated ");
+
+		}
+
+		return expenses;
 	}
 
 }
