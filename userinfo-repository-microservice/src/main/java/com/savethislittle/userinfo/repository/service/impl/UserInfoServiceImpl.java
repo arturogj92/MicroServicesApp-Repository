@@ -144,6 +144,21 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 		return expenses;
 	}
+	
+	
+	
+	@Override
+	public List<Expenses> searchExpenseByCategoryAndMailAndYear(String category, String email, String year) {
+		List<Expenses> expenses = expensesSpringDataRepository.findByCategoryAndEmailAndYear(category, email, year);
+		if (expenses.isEmpty()) {
+			log.error("ACTION: searchExpenseByCategoryAndMail ERROR => expenses.size(): {}",
+					"The user doesn't have expenses asociated");
+			throw new UserInfoRepositoryException("User doesn't have expenses of that category asociated ");
+
+		}
+
+		return expenses;
+	}
 
 	@Override
 	public boolean checkIfUserExists(String email) {
@@ -201,7 +216,47 @@ public class UserInfoServiceImpl implements UserInfoService {
 	public List<Expenses> searchExpenseByMonthAndYearAndEmail(String email, String month, String year) {
 		List<Expenses> expenses = expensesSpringDataRepository.findByMonthAndYearAndEmail(month, year, email);
 		if (expenses.isEmpty()) {
-			log.error("ACTION: findExpensesByEmail ERROR => expensessize(): {}",
+			log.error("ACTION: searchExpenseByMonthAndYearAndEmail ERROR => expensessize(): {}",
+					"The user doesn't have expenses asociated");
+			throw new UserInfoRepositoryException("User doesn't have expenses asociated");
+
+		}
+
+		return expenses;
+	}
+	
+	
+	@Override
+	public List<Expenses> searchExpenseByMonthAndYearAndDayAndEmail(String email, String month, String day, String year) {
+		List<Expenses> expenses = expensesSpringDataRepository.findByMonthAndYearAndDayAndEmail(month, year, day, email);
+		if (expenses.isEmpty()) {
+			log.error("ACTION: searchExpenseByMonthAndYearAndDayAndEmail ERROR => expensessize(): {}",
+					"The user doesn't have expenses asociated");
+			throw new UserInfoRepositoryException("User doesn't have expenses asociated");
+
+		}
+
+		return expenses;
+	}
+	
+	@Override
+	public List<Expenses> searchExpenseByMonthAndYearAndEmailAndCategory(String email, String month, String year, String category) {
+		List<Expenses> expenses = expensesSpringDataRepository.findByMonthAndYearAndEmailAndCategory(month, year, email, category);
+		if (expenses.isEmpty()) {
+			log.error("ACTION: searchExpenseByMonthAndYearAndEmailAndCategory ERROR => expensessize(): {}",
+					"The user doesn't have expenses asociated");
+			throw new UserInfoRepositoryException("User doesn't have expenses asociated");
+
+		}
+
+		return expenses;
+	}
+	
+	
+	public List<Expenses> searchExpenseByMonthAndYearAndDayAndEmailAndCategory(String email, String month, String day, String year, String category) {
+		List<Expenses> expenses = expensesSpringDataRepository.findByMonthAndYearAndDayAndEmailAndCategory(month, year, day, email, category);
+		if (expenses.isEmpty()) {
+			log.error("ACTION: searchExpenseByMonthAndYearAndDayAndEmailAndCategory ERROR => expensessize(): {}",
 					"The user doesn't have expenses asociated");
 			throw new UserInfoRepositoryException("User doesn't have expenses asociated");
 

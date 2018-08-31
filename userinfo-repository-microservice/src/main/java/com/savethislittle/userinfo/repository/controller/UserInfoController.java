@@ -74,7 +74,54 @@ public class UserInfoController {
 
 	}
 
-	@GetMapping("/expenses/{email}")
+	
+	/*SECTION TO RETURN EXPENSES FILTERED BY CATEGORIES, DATES OR BOTH */
+	@GetMapping("/expenses/{email}/{category}")
+	public ResponseEntity<List<Expenses>> findExpensesByCategoryAndMail(@PathVariable String category,
+			@PathVariable String email) {
+		log.info("ACTION: findExpensesByCategory INPUT: => {}", category, email);
+		List<Expenses> expenses = userInfoService.searchExpenseByCategoryAndMail(category, email);
+		log.info("ACTION: findExpensesByCategory OUTPUT => expenses size: {}", expenses.size());
+		return new ResponseEntity<>(expenses, HttpStatus.OK);
+	}
+	
+	@GetMapping("/expenses/{email}/{category}/{year}")
+	public ResponseEntity<List<Expenses>> findExpensesByCategoryAndMailAndYear(@PathVariable String category,
+			@PathVariable String email, @PathVariable String year) {
+		log.info("ACTION: findExpensesByCategory INPUT: => {}", category, email);
+		List<Expenses> expenses = userInfoService.searchExpenseByCategoryAndMailAndYear(category, email, year);
+		log.info("ACTION: findExpensesByCategory OUTPUT => expenses size: {}", expenses.size());
+		return new ResponseEntity<>(expenses, HttpStatus.OK);
+	}
+
+	
+	@GetMapping("/expenses/{email}/{category}/{year}/{month}")
+	public ResponseEntity<List<Expenses>> searchExpenseByMonthAndYearAndEmailAndCategory(@PathVariable String month,
+			@PathVariable String year, @PathVariable String email, @PathVariable String category) {
+		log.info("ACTION: searchExpenseByMonthAndYearAndEmailAndCategory INPUT: => {}", month, year, email, category);
+		List<Expenses> expenses = userInfoService.searchExpenseByMonthAndYearAndEmailAndCategory(email, month, year,
+				category);
+		log.info("ACTION: searchExpenseByMonthAndYearAndEmailAndCategory OUTPUT => expenses size: {}", expenses.size());
+		return new ResponseEntity<>(expenses, HttpStatus.OK);
+	}
+
+	@GetMapping("/expenses/{email}/{category}/{year}/{month}/{day}")
+	public ResponseEntity<List<Expenses>> searchExpenseByMonthAndYearAndEmailAndCategory(@PathVariable String month,
+			@PathVariable String year, @PathVariable String day, @PathVariable String email,
+			@PathVariable String category) {
+		log.info("ACTION: searchExpenseByMonthAndYearAndEmailAndCategory INPUT: => {}", month, year, day, email,
+				category);
+		List<Expenses> expenses = userInfoService.searchExpenseByMonthAndYearAndDayAndEmailAndCategory(email, month,
+				day, year, category);
+		log.info("ACTION: searchExpenseByMonthAndYearAndEmailAndCategory OUTPUT => expenses size: {}", expenses.size());
+		return new ResponseEntity<>(expenses, HttpStatus.OK);
+	}
+	/* END: SECTION TO RETURN EXPENSES FILTERED BY CATEGORIES, DATES OR BOTH */
+	
+	
+
+	/* SECTION TO RETURN ALL EXPENSES BY DATES */
+	@GetMapping("/allexpenses/{email}")
 	public ResponseEntity<List<Expenses>> findExpensesByEmail(@PathVariable String email) {
 		log.info("ACTION: findExpensesByEmail INPUT: => {}", email);
 		List<Expenses> expenses = userInfoService.searchExpenseByEmail(email);
@@ -82,25 +129,16 @@ public class UserInfoController {
 		return new ResponseEntity<>(expenses, HttpStatus.OK);
 	}
 
-	@GetMapping("/expenses/{email}/{category}")
-	public ResponseEntity<List<Expenses>> findExpensesByCategoryAndMail(@PathVariable String category, @PathVariable String email) {
-		log.info("ACTION: findExpensesByCategory INPUT: => {}", category, email);
-		List<Expenses> expenses = userInfoService.searchExpenseByCategoryAndMail(category, email);
-		log.info("ACTION: findExpensesByCategory OUTPUT => expenses size: {}", expenses.size());
-		return new ResponseEntity<>(expenses, HttpStatus.OK);
-	}
-
-	//TODO => creo que el orden de los parametros importa en el servicio.
-	
-	@GetMapping("/expensesdate/{email}/{year}")
-	public ResponseEntity<List<Expenses>> searchExpenseByYearAndEmail(@PathVariable String email, @PathVariable String year) {
+	@GetMapping("/allexpenses/{email}/{year}")
+	public ResponseEntity<List<Expenses>> searchExpenseByYearAndEmail(@PathVariable String email,
+			@PathVariable String year) {
 		log.info("ACTION: searchExpenseByYearAndEmail INPUT: => {}", year, email);
 		List<Expenses> expenses = userInfoService.searchExpenseByYearAndEmail(email, year);
 		log.info("ACTION: searchExpenseByYearAndEmail OUTPUT => expenses size: {}", expenses.size());
 		return new ResponseEntity<>(expenses, HttpStatus.OK);
 	}
 
-	@GetMapping("/expensesdate/{email}/{year}/{month}")
+	@GetMapping("/allexpenses/{email}/{year}/{month}")
 	public ResponseEntity<List<Expenses>> searchExpenseByMonthAndYearAndEmail(@PathVariable String month,
 			@PathVariable String year, @PathVariable String email) {
 		log.info("ACTION: searchExpenseByMonthAndYearAndEmail INPUT: => {}", month, year, email);
@@ -109,8 +147,32 @@ public class UserInfoController {
 		return new ResponseEntity<>(expenses, HttpStatus.OK);
 	}
 
-	// Returns: The amount expensed in categories in the month and year
-	@GetMapping("/totalamountcategorymonth/{email}/{month}/{year}")
+	@GetMapping("/allexpenses/{email}/{year}/{month}/{day}")
+	public ResponseEntity<List<Expenses>> searchExpenseByMonthAndYearAndDayAndEmail(@PathVariable String month,
+			@PathVariable String year, @PathVariable String day, @PathVariable String email) {
+		log.info("ACTION: searchExpenseByMonthAndYearAndEmail INPUT: => {}", month, year, email, day);
+		List<Expenses> expenses = userInfoService.searchExpenseByMonthAndYearAndDayAndEmail(email, month, day, year);
+		log.info("ACTION: searchExpenseByMonthAndYearAndEmail OUTPUT => expenses size: {}", expenses.size());
+		return new ResponseEntity<>(expenses, HttpStatus.OK);
+	}
+	/* END: SECTION TO RETURN ALL EXPENSES BY DATES */	
+	
+	
+	
+	
+	
+	// Returns: The amount expensed in categories in the year
+	@GetMapping("/totalexpensedcategories/{email}/{year}")
+	public ResponseEntity<List<TopExpensesView>> getTotalAmountCategory(@PathVariable String email,
+			@PathVariable String year) {
+		log.info("ACTION: getTotalAmountCategory INPUT: => {}", email);
+		List<TopExpensesView> expenses = userInfoService.getTotalAmountExpensedInCategoryByYear(email, year);
+		log.info("ACTION: getTotalAmountCategory OUTPUT => expenses size: {}", expenses.size());
+		return new ResponseEntity<>(expenses, HttpStatus.OK);
+	}
+	
+	// Returns: The amount expensed in each categories in the month and year
+	@GetMapping("/totalexpensedcategories/{email}/{year}/{month}")
 	public ResponseEntity<List<TopExpensesView>> getTotalAmountCategoryByMonthAndYear(@PathVariable String email,
 			@PathVariable String month, @PathVariable String year) {
 		log.info("ACTION: getTotalAmountCategoryByMonthAndYear INPUT: => {}", email);
@@ -120,15 +182,7 @@ public class UserInfoController {
 		return new ResponseEntity<>(expenses, HttpStatus.OK);
 	}
 
-	// Returns: The amount expensed in categories in the month and year
-	@GetMapping("/totalamountcategorymonth/{email}/{year}")
-	public ResponseEntity<List<TopExpensesView>> getTotalAmountCategory(@PathVariable String email,
-			@PathVariable String year) {
-		log.info("ACTION: getTotalAmountCategory INPUT: => {}", email);
-		List<TopExpensesView> expenses = userInfoService.getTotalAmountExpensedInCategoryByYear(email, year);
-		log.info("ACTION: getTotalAmountCategory OUTPUT => expenses size: {}", expenses.size());
-		return new ResponseEntity<>(expenses, HttpStatus.OK);
-	}
+
 
 	@PutMapping("/user")
 	public ResponseEntity<Void> updateUser(@Valid @RequestBody User user) {

@@ -36,8 +36,16 @@ public interface UserInfoService {
 	public List<Expenses> searchExpenseByYearAndEmail(String year, String email);
 
 	public List<Expenses> searchExpenseByMonthAndYearAndEmail(String email, String month, String year);
+	
+	public List<Expenses> searchExpenseByMonthAndYearAndDayAndEmail(String email, String month, String day, String year);
 
+	public List<Expenses> searchExpenseByMonthAndYearAndEmailAndCategory(String email, String month, String year, String Category);
+	
+	public List<Expenses> searchExpenseByMonthAndYearAndDayAndEmailAndCategory(String email, String month, String day, String year, String Category);
+	
 	public List<Expenses> searchExpenseByCategoryAndMail(String category, String email);
+	
+	public List<Expenses> searchExpenseByCategoryAndMailAndYear(String category, String email, String year);
 
 	public List<TopExpensesView> getTotalAmountExpensedInCategoryByYear(String email, String year);
 

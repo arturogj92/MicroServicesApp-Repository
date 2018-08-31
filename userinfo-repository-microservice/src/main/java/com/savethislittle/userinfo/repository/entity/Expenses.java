@@ -44,6 +44,9 @@ public class Expenses {
 	@Column(name = "MONTHDB", nullable = false)
 	private String month;
 	
+	@Column(name = "DAYDB", nullable = false)
+	private String day;
+	
 //	@Size(min = 1, max = 50)
 	@Column(name = "CATEGORY", nullable = false)
 	private String category;
