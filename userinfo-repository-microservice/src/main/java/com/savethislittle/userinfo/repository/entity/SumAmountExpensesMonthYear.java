@@ -14,10 +14,10 @@ import lombok.Setter;
 @Getter
 
 
-@Table(name = "expensescategorybymonthandyear")
+@Table(name = "sumamountexpensesmonthyear")
 @Entity
 @Immutable
-public class TopExpensesView {
+public class SumAmountExpensesMonthYear {
 
 	
 	

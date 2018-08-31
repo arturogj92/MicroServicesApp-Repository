@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.savethislittle.userinfo.repository.entity.Expenses;
-import com.savethislittle.userinfo.repository.entity.TopExpensesView;
+import com.savethislittle.userinfo.repository.entity.SumAmountExpensesMonthYear;
 import com.savethislittle.userinfo.repository.entity.User;
 import com.savethislittle.userinfo.repository.service.UserInfoService;
 
@@ -162,21 +162,21 @@ public class UserInfoController {
 	
 	
 	// Returns: The amount expensed in categories in the year
-	@GetMapping("/totalexpensedcategories/{email}/{year}")
-	public ResponseEntity<List<TopExpensesView>> getTotalAmountCategory(@PathVariable String email,
+	@GetMapping("/sumamountexpenses/{email}/{year}")
+	public ResponseEntity<List<SumAmountExpensesMonthYear>> getTotalAmountCategory(@PathVariable String email,
 			@PathVariable String year) {
 		log.info("ACTION: getTotalAmountCategory INPUT: => {}", email);
-		List<TopExpensesView> expenses = userInfoService.getTotalAmountExpensedInCategoryByYear(email, year);
+		List<SumAmountExpensesMonthYear> expenses = userInfoService.getTotalAmountExpensedInCategoryByYear(email, year);
 		log.info("ACTION: getTotalAmountCategory OUTPUT => expenses size: {}", expenses.size());
 		return new ResponseEntity<>(expenses, HttpStatus.OK);
 	}
 	
 	// Returns: The amount expensed in each categories in the month and year
-	@GetMapping("/totalexpensedcategories/{email}/{year}/{month}")
-	public ResponseEntity<List<TopExpensesView>> getTotalAmountCategoryByMonthAndYear(@PathVariable String email,
+	@GetMapping("/sumamountexpenses/{email}/{year}/{month}")
+	public ResponseEntity<List<SumAmountExpensesMonthYear>> getTotalAmountCategoryByMonthAndYear(@PathVariable String email,
 			@PathVariable String month, @PathVariable String year) {
 		log.info("ACTION: getTotalAmountCategoryByMonthAndYear INPUT: => {}", email);
-		List<TopExpensesView> expenses = userInfoService.getTotalAmountExpensedInCategoryByMonthAndYear(email, month,
+		List<SumAmountExpensesMonthYear> expenses = userInfoService.getTotalAmountExpensedInCategoryByMonthAndYear(email, month,
 				year);
 		log.info("ACTION: getTotalAmountCategoryByMonthAndYear OUTPUT => expenses size: {}", expenses.size());
 		return new ResponseEntity<>(expenses, HttpStatus.OK);

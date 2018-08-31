@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.savethislittle.userinfo.repository.entity.Expenses;
-import com.savethislittle.userinfo.repository.entity.TopExpensesView;
+import com.savethislittle.userinfo.repository.entity.SumAmountExpensesMonthYear;
 import com.savethislittle.userinfo.repository.entity.User;
 
 public interface UserInfoService {
@@ -47,8 +47,8 @@ public interface UserInfoService {
 	
 	public List<Expenses> searchExpenseByCategoryAndMailAndYear(String category, String email, String year);
 
-	public List<TopExpensesView> getTotalAmountExpensedInCategoryByYear(String email, String year);
+	public List<SumAmountExpensesMonthYear> getTotalAmountExpensedInCategoryByYear(String email, String year);
 
-	public List<TopExpensesView> getTotalAmountExpensedInCategoryByMonthAndYear(String email, String month, String year);
+	public List<SumAmountExpensesMonthYear> getTotalAmountExpensedInCategoryByMonthAndYear(String email, String month, String year);
 
 }
