@@ -1,4 +1,4 @@
-package com.savethislittle.userinfo.repository.repository;
+package com.savethislittle.userinfo.repository.repository.springdatarepositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

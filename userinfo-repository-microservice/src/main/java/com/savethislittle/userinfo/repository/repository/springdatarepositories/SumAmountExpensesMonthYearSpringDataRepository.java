@@ -1,4 +1,4 @@
-package com.savethislittle.userinfo.repository.repository;
+package com.savethislittle.userinfo.repository.repository.springdatarepositories;
 
 import java.util.List;
 
@@ -14,5 +14,5 @@ public interface SumAmountExpensesMonthYearSpringDataRepository extends JpaRepos
 	
 	public List<SumAmountExpensesMonthYear> findByEmailAndMonthAndYear(String email, String month, String year);
 
-	public List<SumAmountExpensesMonthYear> findByEmailAndYear(String email, String year);
+
 }

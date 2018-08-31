@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
--- Host: localhost    Database: savethislittle
+-- Host: 127.0.0.1    Database: savethislittle
 -- ------------------------------------------------------
 -- Server version	8.0.12
 
@@ -79,6 +79,7 @@ CREATE TABLE `expenses` (
   `subcategory` varchar(255) NOT NULL,
   `type` varchar(255) NOT NULL,
   `yeardb` varchar(255) NOT NULL,
+  `daydb` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -89,7 +90,7 @@ CREATE TABLE `expenses` (
 
 LOCK TABLES `expenses` WRITE;
 /*!40000 ALTER TABLE `expenses` DISABLE KEYS */;
-INSERT INTO `expenses` VALUES (1,50,'alcohol','poncho@email.com','february','ladron de manzanas','sider,','one-time expense','2016'),(2,33,'alcohol','poncho@email.com','march','rum alcampo','rum,','one-time expense','2017'),(3,53,'cinema','poncho@email.com','august','los vengadores','entradas,','one-time expense','2013'),(4,21,'cinema','poncho@email.com','january','los increibles','entradas,','one-time expense','2018'),(52,14,'food','poncho@email.com','march','galletas','supermarket,','one-time expense','2018'),(53,10,'food','poncho@email.com','march','pipas','supermarket,','one-time expense','2018'),(54,3,'food','poncho@email.com','march','risketos','supermarket,','one-time expense','2018'),(102,25,'alcohol','poncho@email.com','march','jack daniels','whisky,','one-time expense','2018'),(103,33,'alcohol','poncho@email.com','march','jagger bomb','Jagger,','one-time expense','2018'),(152,47,'vehicle','poncho@email.com','june','gasofa costco','gas,','one-time expense','2018'),(153,41,'vehicle','poncho@email.com','june','gasofa costco','gas,','one-time expense','2018');
+INSERT INTO `expenses` VALUES (1,50,'alcohol','poncho@email.com','february','ladron de manzanas','sider,','one-time expense','2016','27'),(2,33,'alcohol','poncho@email.com','march','rum alcampo','rum,','one-time expense','2017','25'),(3,53,'cinema','poncho@email.com','august','los vengadores','entradas,','one-time expense','2013','11'),(4,21,'cinema','poncho@email.com','january','los increibles','entradas,','one-time expense','2018','12'),(52,14,'food','poncho@email.com','march','galletas','supermarket,','one-time expense','2018','25'),(53,10,'food','poncho@email.com','march','pipas','supermarket,','one-time expense','2018','28'),(54,3,'food','poncho@email.com','march','risketos','supermarket,','one-time expense','2018','4'),(102,25,'alcohol','poncho@email.com','march','jack daniels','whisky,','one-time expense','2018','26'),(103,33,'alcohol','poncho@email.com','march','jagger bomb','Jagger,','one-time expense','2018','28'),(152,47,'vehicle','poncho@email.com','june','gasofa costco','gas,','one-time expense','2018','2'),(153,41,'vehicle','poncho@email.com','june','gasofa costco','gas,','one-time expense','2018','14'),(202,21,'alcohol','poncho@email.com','august','mahou','cerveza','one-time expense','2018','13'),(252,21,'alcohol','poncho@email.com','march','mahou','cerveza','one-time expense','2018','25'),(253,32,'food','poncho@email.com','march','donut chocolate','donuts','one-time expense','2018','25');
 /*!40000 ALTER TABLE `expenses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -111,23 +112,39 @@ CREATE TABLE `expenses_seq` (
 
 LOCK TABLES `expenses_seq` WRITE;
 /*!40000 ALTER TABLE `expenses_seq` DISABLE KEYS */;
-INSERT INTO `expenses_seq` VALUES (251);
+INSERT INTO `expenses_seq` VALUES (351);
 /*!40000 ALTER TABLE `expenses_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
--- Temporary view structure for view `expensescategorybymonthandyear`
+-- Temporary view structure for view `sumamountexpensesmonthyear`
 --
 
-DROP TABLE IF EXISTS `expensescategorybymonthandyear`;
-/*!50001 DROP VIEW IF EXISTS `expensescategorybymonthandyear`*/;
+DROP TABLE IF EXISTS `sumamountexpensesmonthyear`;
+/*!50001 DROP VIEW IF EXISTS `sumamountexpensesmonthyear`*/;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8mb4;
-/*!50001 CREATE VIEW `expensescategorybymonthandyear` AS SELECT 
+/*!50001 CREATE VIEW `sumamountexpensesmonthyear` AS SELECT 
  1 AS `id`,
  1 AS `email`,
  1 AS `category`,
  1 AS `monthdb`,
+ 1 AS `yeardb`,
+ 1 AS `sumamount`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `sumamountexpensesyear`
+--
+
+DROP TABLE IF EXISTS `sumamountexpensesyear`;
+/*!50001 DROP VIEW IF EXISTS `sumamountexpensesyear`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8mb4;
+/*!50001 CREATE VIEW `sumamountexpensesyear` AS SELECT 
+ 1 AS `id`,
+ 1 AS `email`,
+ 1 AS `category`,
  1 AS `yeardb`,
  1 AS `sumamount`*/;
 SET character_set_client = @saved_cs_client;
@@ -183,10 +200,10 @@ INSERT INTO `user_seq` VALUES (101);
 UNLOCK TABLES;
 
 --
--- Final view structure for view `expensescategorybymonthandyear`
+-- Final view structure for view `sumamountexpensesmonthyear`
 --
 
-/*!50001 DROP VIEW IF EXISTS `expensescategorybymonthandyear`*/;
+/*!50001 DROP VIEW IF EXISTS `sumamountexpensesmonthyear`*/;
 /*!50001 SET @saved_cs_client          = @@character_set_client */;
 /*!50001 SET @saved_cs_results         = @@character_set_results */;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
@@ -195,7 +212,25 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `expensescategorybymonthandyear` AS select `myalias`.`id` AS `id`,`myalias`.`email` AS `email`,`myalias`.`category` AS `category`,`myalias`.`monthdb` AS `monthdb`,`myalias`.`yeardb` AS `yeardb`,`myalias`.`sumamount` AS `sumamount` from (select `expenses`.`id` AS `id`,`expenses`.`email` AS `email`,`expenses`.`category` AS `category`,`expenses`.`monthdb` AS `monthdb`,`expenses`.`yeardb` AS `yeardb`,sum(`expenses`.`amount`) AS `sumamount` from `expenses` group by `expenses`.`monthdb`,`expenses`.`yeardb`,`expenses`.`email`,`expenses`.`category` order by `sumamount` desc) `myalias` */;
+/*!50001 VIEW `sumamountexpensesmonthyear` AS select `myalias`.`id` AS `id`,`myalias`.`email` AS `email`,`myalias`.`category` AS `category`,`myalias`.`monthdb` AS `monthdb`,`myalias`.`yeardb` AS `yeardb`,`myalias`.`sumamount` AS `sumamount` from (select `expenses`.`id` AS `id`,`expenses`.`email` AS `email`,`expenses`.`category` AS `category`,`expenses`.`monthdb` AS `monthdb`,`expenses`.`yeardb` AS `yeardb`,sum(`expenses`.`amount`) AS `sumamount` from `expenses` group by `expenses`.`monthdb`,`expenses`.`yeardb`,`expenses`.`email`,`expenses`.`category` order by `sumamount` desc) `myalias` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `sumamountexpensesyear`
+--
+
+/*!50001 DROP VIEW IF EXISTS `sumamountexpensesyear`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `sumamountexpensesyear` AS select `myalias`.`id` AS `id`,`myalias`.`email` AS `email`,`myalias`.`category` AS `category`,`myalias`.`yeardb` AS `yeardb`,`myalias`.`sumamount` AS `sumamount` from (select `expenses`.`id` AS `id`,`expenses`.`email` AS `email`,`expenses`.`category` AS `category`,`expenses`.`yeardb` AS `yeardb`,sum(`expenses`.`amount`) AS `sumamount` from `expenses` group by `expenses`.`yeardb`,`expenses`.`yeardb`,`expenses`.`email`,`expenses`.`category` order by `sumamount` desc) `myalias` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -209,4 +244,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-30 23:59:28
+-- Dump completed on 2018-08-31 14:05:22

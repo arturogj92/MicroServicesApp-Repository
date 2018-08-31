@@ -1,4 +1,4 @@
-package com.savethislittle.userinfo.repository.repository;
+package com.savethislittle.userinfo.repository.repository.springdatarepositories;
 
 import java.util.List;
 

@@ -19,6 +19,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.savethislittle.userinfo.repository.entity.Expenses;
 import com.savethislittle.userinfo.repository.entity.SumAmountExpensesMonthYear;
+import com.savethislittle.userinfo.repository.entity.SumAmountExpensesYear;
 import com.savethislittle.userinfo.repository.entity.User;
 import com.savethislittle.userinfo.repository.service.UserInfoService;
 
@@ -30,6 +31,28 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class UserInfoController {
 
+	//TODO => DIVIDIR EN Varios controladores
+	
+	/*
+	 * Controller para user
+	 * Controller para expenses normales
+	 * Controller para Sumamounts
+	 * 
+	 * Hacer tambien 3 servicios, 1 por cada 1
+	 * Adaptar el microservicio de moneyinfo
+	 * 
+	 * microserv emails
+	 * microserv previsiones
+	 * microserv serv configuracion
+	 * sleuth
+	 * elk
+	 * zuul
+	 * seguridad
+	 * docker
+	 * 
+	 */
+	
+	
 	private UserInfoService userInfoService;
 
 	@PostMapping("/user")
@@ -163,10 +186,10 @@ public class UserInfoController {
 	
 	// Returns: The amount expensed in categories in the year
 	@GetMapping("/sumamountexpenses/{email}/{year}")
-	public ResponseEntity<List<SumAmountExpensesMonthYear>> getTotalAmountCategory(@PathVariable String email,
+	public ResponseEntity<List<SumAmountExpensesYear>> getTotalAmountCategory(@PathVariable String email,
 			@PathVariable String year) {
 		log.info("ACTION: getTotalAmountCategory INPUT: => {}", email);
-		List<SumAmountExpensesMonthYear> expenses = userInfoService.getTotalAmountExpensedInCategoryByYear(email, year);
+		List<SumAmountExpensesYear> expenses = userInfoService.getTotalAmountExpensedInCategoryByYear(email, year);
 		log.info("ACTION: getTotalAmountCategory OUTPUT => expenses size: {}", expenses.size());
 		return new ResponseEntity<>(expenses, HttpStatus.OK);
 	}

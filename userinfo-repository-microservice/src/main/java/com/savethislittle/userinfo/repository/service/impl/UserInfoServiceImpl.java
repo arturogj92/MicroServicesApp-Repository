@@ -7,14 +7,16 @@ import org.springframework.stereotype.Service;
 
 import com.savethislittle.userinfo.repository.entity.Expenses;
 import com.savethislittle.userinfo.repository.entity.SumAmountExpensesMonthYear;
+import com.savethislittle.userinfo.repository.entity.SumAmountExpensesYear;
 import com.savethislittle.userinfo.repository.entity.User;
 import com.savethislittle.userinfo.repository.exception.UserInfoRepositoryException;
 import com.savethislittle.userinfo.repository.repository.ExpenseCustomRepository;
 import com.savethislittle.userinfo.repository.repository.SumAmountExpensesMonthYearCustomRepository;
-import com.savethislittle.userinfo.repository.repository.SumAmountExpensesMonthYearSpringDataRepository;
-import com.savethislittle.userinfo.repository.repository.ExpenseSpringDataRepository;
 import com.savethislittle.userinfo.repository.repository.UserInfoCustomRepository;
-import com.savethislittle.userinfo.repository.repository.UserInfoSpringDataRepository;
+import com.savethislittle.userinfo.repository.repository.springdatarepositories.ExpenseSpringDataRepository;
+import com.savethislittle.userinfo.repository.repository.springdatarepositories.SumAmountExpensesMonthYearSpringDataRepository;
+import com.savethislittle.userinfo.repository.repository.springdatarepositories.SumAmountExpensesYearSpringDataRepository;
+import com.savethislittle.userinfo.repository.repository.springdatarepositories.UserInfoSpringDataRepository;
 import com.savethislittle.userinfo.repository.service.UserInfoService;
 
 import lombok.AllArgsConstructor;
@@ -26,11 +28,18 @@ import lombok.extern.slf4j.Slf4j;
 public class UserInfoServiceImpl implements UserInfoService {
 
 	private UserInfoSpringDataRepository userInfoSpringDataRepository;
-	private SumAmountExpensesMonthYearSpringDataRepository topExpensesViewSpringDataRepository;
+	private UserInfoCustomRepository userInfoCustomRepository;
+	
+	private SumAmountExpensesMonthYearSpringDataRepository sumAmountExpensesMonthYearSpringDataRepository;
+	private SumAmountExpensesMonthYearCustomRepository sumAmountExpensesMonthYearCustomRepository;
+	
+	private SumAmountExpensesYearSpringDataRepository sumAmountExpensesYearSpringDataRepository;
+	
 	private ExpenseSpringDataRepository expensesSpringDataRepository;
 	private ExpenseCustomRepository expenseCustomRepository;
-	private SumAmountExpensesMonthYearCustomRepository topExpensesViewCustomRepository;
-	private UserInfoCustomRepository userInfoCustomRepository;
+	
+	
+	
 
 	@Override
 	public User createUser(final User user) {
@@ -188,7 +197,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 
 	@Override
 	public List<SumAmountExpensesMonthYear> getTotalAmountExpensedInCategoryByMonthAndYear(String email, String month, String year) {
-		List<SumAmountExpensesMonthYear> expenses = topExpensesViewSpringDataRepository.findByEmailAndMonthAndYear(email, month, year);
+		List<SumAmountExpensesMonthYear> expenses = sumAmountExpensesMonthYearSpringDataRepository.findByEmailAndMonthAndYear(email, month, year);
 		if (expenses.isEmpty()) {
 			log.error("ACTION: getTotalAmountExpensedInCategoryByMonthAndYear ERROR => expensessize(): {}",
 					"The user doesn't have expenses asociated");
@@ -199,8 +208,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 	}
 
 	@Override
-	public List<SumAmountExpensesMonthYear> getTotalAmountExpensedInCategoryByYear(String email, String year) {
-		List<SumAmountExpensesMonthYear> expenses = topExpensesViewSpringDataRepository.findByEmailAndYear(email, year);
+	public List<SumAmountExpensesYear> getTotalAmountExpensedInCategoryByYear(String email, String year) {
+		List<SumAmountExpensesYear> expenses = sumAmountExpensesYearSpringDataRepository.findByEmailAndYear(email, year);
 		if (expenses.isEmpty()) {
 			log.error("ACTION: getTotalAmountExpensedInCategoryByYear ERROR => expensessize(): {}",
 					"The user doesn't have expenses asociated");
