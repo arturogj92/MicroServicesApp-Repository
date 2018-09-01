@@ -24,23 +24,23 @@ public class SumAmountExpensesController {
 
 	// Returns: The amount expensed in categories in the year
 	@GetMapping("/sumamountexpenses/{email}/{year}")
-	public ResponseEntity<List<SumAmountExpensesYear>> getTotalAmountCategory(@PathVariable String email,
+	public ResponseEntity<List<SumAmountExpensesYear>> getTotalSumExpensedInYear(@PathVariable String email,
 			@PathVariable String year) {
-		log.info("ACTION: getTotalAmountCategory INPUT: => {}", email);
+		log.info("ACTION: GetTotalSumExpensedInYear INPUT: => {}", email);
 		List<SumAmountExpensesYear> expenses = sumAmountExpensesService.getTotalAmountExpensedInCategoryByYear(email,
 				year);
-		log.info("ACTION: getTotalAmountCategory OUTPUT => expenses size: {}", expenses.size());
+		log.info("ACTION: GetTotalSumExpensedInYear OUTPUT => expenses size: {}", expenses.size());
 		return new ResponseEntity<>(expenses, HttpStatus.OK);
 	}
 
 	// Returns: The amount expensed in each categories in the month and year
 	@GetMapping("/sumamountexpenses/{email}/{year}/{month}")
-	public ResponseEntity<List<SumAmountExpensesMonthYear>> getTotalAmountCategoryByMonthAndYear(
+	public ResponseEntity<List<SumAmountExpensesMonthYear>> getTotalSumExpensedInYearAndMonth(
 			@PathVariable String email, @PathVariable String month, @PathVariable String year) {
-		log.info("ACTION: getTotalAmountCategoryByMonthAndYear INPUT: => {}", email);
+		log.info("ACTION: getTotalSumExpensedInYearAndMonth INPUT: => {}", email);
 		List<SumAmountExpensesMonthYear> expenses = sumAmountExpensesService
 				.getTotalAmountExpensedInCategoryByMonthAndYear(email, month, year);
-		log.info("ACTION: getTotalAmountCategoryByMonthAndYear OUTPUT => expenses size: {}", expenses.size());
+		log.info("ACTION: getTotalSumExpensedInYearAndMonth OUTPUT => expenses size: {}", expenses.size());
 		return new ResponseEntity<>(expenses, HttpStatus.OK);
 	}
 

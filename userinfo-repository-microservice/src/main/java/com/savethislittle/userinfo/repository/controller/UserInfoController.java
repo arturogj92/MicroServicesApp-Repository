@@ -32,6 +32,9 @@ public class UserInfoController {
 
 	/*
 	 * 
+	 * REFACTORIZAR QUERIES POR MISMO NOMBRE QUE METODO DEL CONTROLLER. EJ. EL CONTROLER SE LLAMA GETUSER, PUES EL 
+	 * SERVICIO TIENE QUE LLAMARSE GETUSER(EL METODO)
+	 * 
 	 * Pensar en el microservicio de previsiones o cosas que necesita la aplicacion
 	 * 
 	 * conectar con feign.
@@ -43,7 +46,7 @@ public class UserInfoController {
 	 * frontend
 	 * 
 	 * seguridad
-	 * 
+	 * bnm
 	 * docker
 	 * 
 	 * 
