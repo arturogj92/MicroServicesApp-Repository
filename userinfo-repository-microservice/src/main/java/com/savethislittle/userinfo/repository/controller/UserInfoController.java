@@ -28,16 +28,24 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 public class UserInfoController {
 
-	// TODO => DIVIDIR EN Varios controladores
+	// TODO => Probar siguiente microservicio y devolver lo que se crea que es necesario
 
 	/*
-	 * Controller para user Controller para expenses normales Controller para
-	 * Sumamounts
 	 * 
-	 * Hacer tambien 3 servicios, 1 por cada 1 Adaptar el microservicio de moneyinfo
+	 * Pensar en el microservicio de previsiones o cosas que necesita la aplicacion
 	 * 
-	 * microserv emails microserv previsiones microserv serv configuracion sleuth
-	 * elk zuul seguridad docker
+	 * conectar con feign.
+	 * 
+	 * Meter logs sleuth y elk
+	 * 
+	 * zuul
+	 * 
+	 * frontend
+	 * 
+	 * seguridad
+	 * 
+	 * docker
+	 * 
 	 * 
 	 */
 
