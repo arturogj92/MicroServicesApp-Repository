@@ -11,7 +11,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Digits;
 
-import org.joda.time.DateTime;
 
 import lombok.Getter;
 import lombok.Setter;

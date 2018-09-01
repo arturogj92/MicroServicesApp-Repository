@@ -1,4 +1,4 @@
-package com.savethislittle.userinfo.repository.repository.impl;
+package com.savethislittle.userinfo.repository.repository.customrepositories.impl;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.savethislittle.userinfo.repository.entity.User;
-import com.savethislittle.userinfo.repository.repository.UserInfoCustomRepository;
+import com.savethislittle.userinfo.repository.repository.customrepositories.UserInfoCustomRepository;
 
 @Repository
 public class UserInfoCustomRepositoryImpl implements UserInfoCustomRepository {

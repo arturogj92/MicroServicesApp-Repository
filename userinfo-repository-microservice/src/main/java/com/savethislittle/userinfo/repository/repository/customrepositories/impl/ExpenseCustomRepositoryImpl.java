@@ -1,9 +1,8 @@
-package com.savethislittle.userinfo.repository.repository.impl;
+package com.savethislittle.userinfo.repository.repository.customrepositories.impl;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
@@ -12,11 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.savethislittle.userinfo.repository.entity.Expenses;
-import com.savethislittle.userinfo.repository.repository.ExpenseCustomRepository;
+import com.savethislittle.userinfo.repository.repository.customrepositories.ExpenseCustomRepository;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @Repository
 public class ExpenseCustomRepositoryImpl implements ExpenseCustomRepository {
 

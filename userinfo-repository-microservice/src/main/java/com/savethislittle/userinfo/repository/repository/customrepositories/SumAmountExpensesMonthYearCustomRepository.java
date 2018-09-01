@@ -1,4 +1,4 @@
-package com.savethislittle.userinfo.repository.repository;
+package com.savethislittle.userinfo.repository.repository.customrepositories;
 
 import java.util.List;
 
