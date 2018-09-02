@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: savethislittle
+-- Host: localhost    Database: savethislittle
 -- ------------------------------------------------------
 -- Server version	8.0.12
 
@@ -36,7 +36,7 @@ CREATE TABLE `economyinfo` (
 
 LOCK TABLES `economyinfo` WRITE;
 /*!40000 ALTER TABLE `economyinfo` DISABLE KEYS */;
-INSERT INTO `economyinfo` VALUES (1,4026,1130);
+INSERT INTO `economyinfo` VALUES (1,4026,1130),(103,1250,1560);
 /*!40000 ALTER TABLE `economyinfo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +58,7 @@ CREATE TABLE `economyinfo_seq` (
 
 LOCK TABLES `economyinfo_seq` WRITE;
 /*!40000 ALTER TABLE `economyinfo_seq` DISABLE KEYS */;
-INSERT INTO `economyinfo_seq` VALUES (101);
+INSERT INTO `economyinfo_seq` VALUES (201);
 /*!40000 ALTER TABLE `economyinfo_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -90,7 +90,7 @@ CREATE TABLE `expenses` (
 
 LOCK TABLES `expenses` WRITE;
 /*!40000 ALTER TABLE `expenses` DISABLE KEYS */;
-INSERT INTO `expenses` VALUES (1,50,'alcohol','poncho@email.com','february','ladron de manzanas','sider,','one-time expense','2016','27'),(2,33,'alcohol','poncho@email.com','march','rum alcampo','rum,','one-time expense','2017','25'),(3,53,'cinema','poncho@email.com','august','los vengadores','entradas,','one-time expense','2013','11'),(4,21,'cinema','poncho@email.com','january','los increibles','entradas,','one-time expense','2018','12'),(52,14,'food','poncho@email.com','march','galletas','supermarket,','one-time expense','2018','25'),(53,10,'food','poncho@email.com','march','pipas','supermarket,','one-time expense','2018','28'),(54,3,'food','poncho@email.com','march','risketos','supermarket,','one-time expense','2018','4'),(102,25,'alcohol','poncho@email.com','march','jack daniels','whisky,','one-time expense','2018','26'),(103,33,'alcohol','poncho@email.com','march','jagger bomb','Jagger,','one-time expense','2018','28'),(152,47,'vehicle','poncho@email.com','june','gasofa costco','gas,','one-time expense','2018','2'),(153,41,'vehicle','poncho@email.com','june','gasofa costco','gas,','one-time expense','2018','14'),(202,21,'alcohol','poncho@email.com','august','mahou','cerveza','one-time expense','2018','13'),(252,21,'alcohol','poncho@email.com','march','mahou','cerveza','one-time expense','2018','25'),(253,32,'food','poncho@email.com','march','donut chocolate','donuts','one-time expense','2018','25');
+INSERT INTO `expenses` VALUES (1,50,'alcohol','poncho@email.com','february','ladron de manzanas','sider,','one-time expense','2016','11'),(2,33,'alcohol','poncho@email.com','march','rum alcampo','rum,','one-time expense','2017','11'),(3,17.3,'cinema','poncho@email.com','august','note','buscando a nemo','one-time expense','2018','13'),(4,21,'cinema','poncho@email.com','january','los increibles','entradas,','one-time expense','2018','13'),(52,14,'food','poncho@email.com','march','galletas','supermarket,','one-time expense','2018','14'),(53,10,'food','poncho@email.com','march','pipas','supermarket,','one-time expense','2018','6'),(54,3,'food','poncho@email.com','march','risketos','supermarket,','one-time expense','2018','5'),(102,25,'alcohol','poncho@email.com','march','jack daniels','whisky,','one-time expense','2018','3'),(103,33,'alcohol','poncho@email.com','march','jagger bomb','Jagger,','one-time expense','2018','11'),(152,47,'vehicle','poncho@email.com','june','gasofa costco','gas,','one-time expense','2018','26'),(153,41,'vehicle','poncho@email.com','june','gasofa costco','gas,','one-time expense','2018','2'),(202,22,'alcohol','poncho@email.com','february','ladron de manzanas','sider','one-time expense','2018','11'),(252,210,'alcohol','poncho@email.com','february','ladron de manzanas','sider','one-time expense','2014','12'),(306,5,'entertaiment','poncho@email.com','february','netflix','video','monthly subscription','2018','12'),(307,36,'shopping','poncho@email.com','february','amazon prime','amazon','anual subscription','2018','12'),(305,3,'entertaiment','poncho@email.com','february','Spotify','music','monthly subscription','2018','12');
 /*!40000 ALTER TABLE `expenses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -112,7 +112,7 @@ CREATE TABLE `expenses_seq` (
 
 LOCK TABLES `expenses_seq` WRITE;
 /*!40000 ALTER TABLE `expenses_seq` DISABLE KEYS */;
-INSERT INTO `expenses_seq` VALUES (351);
+INSERT INTO `expenses_seq` VALUES (401);
 /*!40000 ALTER TABLE `expenses_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -173,7 +173,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'poncho@email.com','123456','poncho',1);
+INSERT INTO `user` VALUES (1,'poncho@email.com','123456','poncho',1),(52,'rolan@email.com','password','rolan',103);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,7 +195,7 @@ CREATE TABLE `user_seq` (
 
 LOCK TABLES `user_seq` WRITE;
 /*!40000 ALTER TABLE `user_seq` DISABLE KEYS */;
-INSERT INTO `user_seq` VALUES (101);
+INSERT INTO `user_seq` VALUES (151);
 /*!40000 ALTER TABLE `user_seq` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,7 +230,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `sumamountexpensesyear` AS select `myalias`.`id` AS `id`,`myalias`.`email` AS `email`,`myalias`.`category` AS `category`,`myalias`.`yeardb` AS `yeardb`,`myalias`.`sumamount` AS `sumamount` from (select `expenses`.`id` AS `id`,`expenses`.`email` AS `email`,`expenses`.`category` AS `category`,`expenses`.`yeardb` AS `yeardb`,sum(`expenses`.`amount`) AS `sumamount` from `expenses` group by `expenses`.`yeardb`,`expenses`.`yeardb`,`expenses`.`email`,`expenses`.`category` order by `sumamount` desc) `myalias` */;
+/*!50001 VIEW `sumamountexpensesyear` AS select `myalias`.`id` AS `id`,`myalias`.`email` AS `email`,`myalias`.`category` AS `category`,`myalias`.`yeardb` AS `yeardb`,`myalias`.`sumamount` AS `sumamount` from (select `expenses`.`id` AS `id`,`expenses`.`email` AS `email`,`expenses`.`category` AS `category`,`expenses`.`yeardb` AS `yeardb`,sum(`expenses`.`amount`) AS `sumamount` from `expenses` group by `expenses`.`yeardb`,`expenses`.`email`,`expenses`.`category` order by `sumamount` desc) `myalias` */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -244,4 +244,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-08-31 14:05:22
+-- Dump completed on 2018-09-02 16:04:22
